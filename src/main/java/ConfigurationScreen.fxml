@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ConfigurationScreenController">
+   <children>
+      <Text layoutX="166.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a difficulty" wrappingWidth="159.13671875" />
+      <Text layoutX="165.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Map Type" />
+      <Text layoutX="165.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the number of players" />
+      <Button fx:id="decrease_difficulty" layoutX="133.0" layoutY="87.0" mnemonicParsing="false" onAction="#decreaseDifficulty" text="-" />
+      <Button fx:id="increase_difficulty" layoutX="275.0" layoutY="87.0" mnemonicParsing="false" onAction="#increaseDifficulty" text="+" />
+      <Button fx:id="increase_map" layoutX="275.0" layoutY="197.0" mnemonicParsing="false" text="+" />
+      <Button fx:id="increase_players" layoutX="275.0" layoutY="285.0" mnemonicParsing="false" text="+" />
+      <Button fx:id="decrease_map" layoutX="133.0" layoutY="197.0" mnemonicParsing="false" text="-" />
+      <Button fx:id="decrease_players" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" text="-" />
+      <Label fx:id="difficulty_label" layoutX="166.0" layoutY="91.0" text="Beginner" />
+      <Label fx:id="map_label" layoutX="161.0" layoutY="201.0" text="Label" />
+      <Label fx:id="players_label" layoutX="161.0" layoutY="289.0" text="Label" />
+   </children>
+</Pane>
