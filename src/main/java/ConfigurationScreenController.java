@@ -36,6 +36,8 @@ public class ConfigurationScreenController{
     private Button decrease_players;
 
     private int difficulty = 1;
+    private int map = 1;
+    private int players = 1;
 
     @FXML
     private void increaseDifficulty(ActionEvent event) {
@@ -66,9 +68,47 @@ public class ConfigurationScreenController{
     }
 
     @FXML
-    private void increaseMap(ActionEvent event) {
-
+     private void increaseMap(ActionEvent event) {
+        if (map < 3) {
+            map++;
+        }
+        if (map == 1) {
+            map_label.setText("Map1");
+        } else if (map == 2) {
+            map_label.setText("Map2");
+        } else if (map == 3) {
+            map_label.setText("Map3");
+        }
     }
 
+    @FXML
+    private void decreaseMap(ActionEvent event) {
+        if (map > 0) {
+            map--;
+        }
+        if (map == 1) {
+            map_label.setText("Map1");
+        } else if (map == 2) {
+            map_label.setText("Map2");
+        } else if (map == 3) {
+            map_label.setText("Map3");
+        }
+    }
+
+    @FXML
+    private void increasePlayers(ActionEvent event) {
+        if (players < 4) {
+            players++;
+        }
+        players_label.setText(String.valueOf(players));
+    }
+
+    @FXML
+    private void decreasePlayers(ActionEvent event) {
+        if (players > 1) {
+            players--;
+        }
+        players_label.setText(String.valueOf(players));
+    }
 }
 
