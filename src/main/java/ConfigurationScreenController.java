@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,6 +35,8 @@ public class ConfigurationScreenController{
     private Button increase_players;
     @FXML
     private Button decrease_players;
+    @FXML
+    private Button next_button;
 
     private int difficulty = 1;
     private int map = 1;
@@ -109,6 +112,16 @@ public class ConfigurationScreenController{
             players--;
         }
         players_label.setText(String.valueOf(players));
+    }
+
+    @FXML
+    private void next(ActionEvent event) throws Exception{
+        Parent config = FXMLLoader.load(getClass().getResource("PlayerConfigurationScreen.fxml"));
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = (Stage) ((Node) event.getSource()).getScene()
+                .getWindow();
+        stageN.setScene(sceneConfig);
+        stageN.show();
     }
 }
 
