@@ -12,7 +12,7 @@
       <ComboBox fx:id="race_combobox" layoutX="179.0" layoutY="127.0" prefWidth="150.0" />
       <Label layoutX="112.0" layoutY="190.0" text="Color:" />
       <ColorPicker fx:id="color_colorpicker" layoutX="180.0" layoutY="185.0" />
-      <Button fx:id="continue_button" layoutX="180.0" layoutY="294.0" mnemonicParsing="false" onAction="#continuePressed" text="Continue" />
+      <Button fx:id="continue_button" layoutX="179.0" layoutY="328.0" mnemonicParsing="false" onAction="#continuePressed" text="Continue" />
       <Label fx:id="error_label" layoutX="180.0" layoutY="32.0" textFill="RED" />
    </children>
 </Pane>
