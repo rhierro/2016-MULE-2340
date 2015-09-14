@@ -27,9 +27,14 @@ public class PlayerConfigurationScreenController{
     private String race;
     private ObservableList<String> races =
             FXCollections.observableArrayList(
-                    "race 1",
-                    "race 2",
-                    "race 3"
+                    "Packer",
+                    "Spheroid",
+                    "Humanoid",
+                    "Leggite",
+                    "Flapper",
+                    "Bonzoid",
+                    "Mechtron",
+                    "Gollumer"
             );
 
     @FXML
@@ -46,8 +51,10 @@ public class PlayerConfigurationScreenController{
 
     @FXML
     void initialize() {
-        race_combobox.getItems().addAll("race1", "race2", "race3");
-        race_combobox.setValue("race1");
+        for (String s: races) {
+            race_combobox.getItems().add(s);
+        }
+        race_combobox.setValue(races.get(0));
     }
 
     @FXML
