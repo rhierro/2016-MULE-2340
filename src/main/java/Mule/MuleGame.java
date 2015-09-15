@@ -1,6 +1,7 @@
 /**
  * Created by Henry on 9/8/2015.
  */
+package Mule;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;

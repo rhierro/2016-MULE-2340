@@ -1,0 +1,6 @@
+.background {
+    -fx-background-image: url("MuleConfigBG.png");
+    -fx-background-size: stretch, auto;
+    -fx-background-position: right bottom;
+    -fx-background-repeat: stretch stretch;
+}
