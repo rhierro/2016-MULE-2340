@@ -2,26 +2,22 @@
  * Created by Henry on 9/9/2015.
  */
 
-import com.sun.org.apache.xml.internal.security.Init;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class PlayerConfigurationScreenController{
 
 
 
-
+    private MuleGame mainApp;
     private String name;
     private Color color = Color.WHITE;
     private String race;
@@ -48,6 +44,8 @@ public class PlayerConfigurationScreenController{
     @FXML
     private Label error_label;
 
+    private MainController mc;
+
 
     @FXML
     void initialize() {
@@ -65,12 +63,18 @@ public class PlayerConfigurationScreenController{
             name = name_textfield.getText();
             race = race_combobox.getValue();
             color = color_colorpicker.getValue();
+            Player p = new Player(name, race, color);
+            mc.addPlayer(p);
         }
 
     }
     @FXML
     private void inputboxEntered(KeyEvent event) {
         error_label.setText("");
+    }
+
+    public void setMainController(MainController mc) {
+        this.mc = mc;
     }
 
 }

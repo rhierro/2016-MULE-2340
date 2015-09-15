@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -6,14 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.KeyCode;
+import sun.applet.Main;
 
 public class ConfigurationScreenController{
 
@@ -41,6 +35,7 @@ public class ConfigurationScreenController{
     private int difficulty = 1;
     private int map = 1;
     private int players = 1;
+    private MainController mc;
 
     @FXML
     private void increaseDifficulty(ActionEvent event) {
@@ -116,12 +111,26 @@ public class ConfigurationScreenController{
 
     @FXML
     private void next(ActionEvent event) throws Exception{
-        Parent config = FXMLLoader.load(getClass().getResource("PlayerConfigurationScreen.fxml"));
+        mc.setDifficulty(difficulty);
+        mc.setMap(map);
+        mc.setNumberOfPlayers(players);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("PlayerConfigurationScreen.fxml"));
+        Parent config = loader.load();
         Scene sceneConfig = new Scene(config);
         Stage stageN = (Stage) ((Node) event.getSource()).getScene()
                 .getWindow();
         stageN.setScene(sceneConfig);
         stageN.show();
+        PlayerConfigurationScreenController controller = loader.getController();
+
+
     }
+
+    public void setMainController(MainController mc) {
+        this.mc = mc;
+    }
+
+
 }
 
