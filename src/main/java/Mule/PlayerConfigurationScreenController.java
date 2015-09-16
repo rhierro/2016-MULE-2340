@@ -69,7 +69,16 @@ public class PlayerConfigurationScreenController {
     private void continuePressed(ActionEvent event) throws Exception {
         if (name_textfield.getText().trim().equals("")) {
             error_label.setText("Please enter a name");
-        } else if (playersAdded == mc.getNumberOfPlayers()) {
+        } else {
+            name = name_textfield.getText();
+            race = race_combobox.getValue();
+            color = color_colorpicker.getValue();
+            Player p = new Player(name, race, color);
+            mc.addPlayer(p);
+            playersAdded++;
+        }
+
+        if (playersAdded == mc.getNumberOfPlayers()) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("PlayerOverviewScreen.fxml"));
             Parent config = loader.load();
@@ -81,12 +90,6 @@ public class PlayerConfigurationScreenController {
             PlayerOverviewScreenController controller = loader.getController();
             controller.setMainController(mc);
         } else {
-            name = name_textfield.getText();
-            race = race_combobox.getValue();
-            color = color_colorpicker.getValue();
-            Player p = new Player(name, race, color);
-            mc.addPlayer(p);
-            playersAdded++;
             playerNum_label.setText(String.format("Player %d", playersAdded + 1));
 
         }
