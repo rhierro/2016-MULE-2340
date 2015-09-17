@@ -42,4 +42,8 @@ public class MainController {
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
+
+    public ObservableList<Player> getPlayers() {
+        return players;
+    }
 }

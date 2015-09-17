@@ -18,6 +18,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class PlayerConfigurationScreenController {
 
 
@@ -39,6 +44,8 @@ public class PlayerConfigurationScreenController {
                     "Mechtron",
                     "Gollumer"
             );
+
+    private List<String> compNames = Arrays.asList("Bob", "Joe", "Bill");
 
     @FXML
     private ComboBox<String> race_combobox;
@@ -75,10 +82,23 @@ public class PlayerConfigurationScreenController {
             color = color_colorpicker.getValue();
             Player p = new Player(name, race, color);
             mc.addPlayer(p);
+            name_textfield.setText("");
             playersAdded++;
         }
 
         if (playersAdded == mc.getNumberOfPlayers()) {
+            if (playersAdded < 4) {
+                // generate computer player
+                for (int i = 0; i < 4-playersAdded; i++) {
+                    Random rand = new Random();
+                    double r = rand.nextDouble() % 255;
+                    double g = rand.nextDouble() % 255;
+                    double b = rand.nextDouble() % 255;
+                    Color color = new Color(r, g, b, 1);
+                    Player c = new Player(compNames.get(i), races.get(i), color);
+                    mc.addPlayer(c);
+                }
+            }
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("PlayerOverviewScreen.fxml"));
             Parent config = loader.load();
@@ -89,6 +109,10 @@ public class PlayerConfigurationScreenController {
             stageN.show();
             PlayerOverviewScreenController controller = loader.getController();
             controller.setMainController(mc);
+            controller.generateOverview();
+
+
+
         } else {
             playerNum_label.setText(String.format("Player %d", playersAdded + 1));
 

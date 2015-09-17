@@ -127,6 +127,8 @@ public class ConfigurationScreenController {
         PlayerConfigurationScreenController controller = loader.getController();
         controller.setMainController(mc);
 
+
+
     }
 
     public void setMainController(MainController mc) {

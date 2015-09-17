@@ -9,10 +9,18 @@ public class Player {
     private String name;
     private Color color;
 
+    boolean computer = false;
+
+
     public Player(String n, String r, Color c) {
         race = r;
         name = n;
         color = c;
+    }
+
+    public Player(String n, String r, Color c, boolean comp) {
+        this(n, r, c);
+        computer = comp;
     }
 
     public String getRace() {
@@ -37,5 +45,9 @@ public class Player {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public boolean isComputer() {
+        return computer;
     }
 }
