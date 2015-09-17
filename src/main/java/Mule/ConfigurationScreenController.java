@@ -1,3 +1,5 @@
+package Mule;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -9,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import sun.applet.Main;
 
-public class ConfigurationScreenController{
+public class ConfigurationScreenController {
 
     @FXML
     private Label difficulty_label;
@@ -123,7 +125,7 @@ public class ConfigurationScreenController{
         stageN.setScene(sceneConfig);
         stageN.show();
         PlayerConfigurationScreenController controller = loader.getController();
-
+        controller.setMainController(mc);
 
     }
 

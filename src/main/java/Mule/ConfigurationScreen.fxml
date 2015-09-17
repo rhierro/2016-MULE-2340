@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@resources/ConfigurationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mule.ConfigurationScreenController">
+   <children>
+      <Text fill="WHITE" layoutX="166.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a difficulty" wrappingWidth="159.13671875">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Text>
+      <Text fill="WHITE" layoutX="165.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a Map Type">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Text>
+      <Text fill="WHITE" layoutX="165.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the number of players">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Text>
+      <Button fx:id="decrease_difficulty" layoutX="133.0" layoutY="87.0" mnemonicParsing="false" onAction="#decreaseDifficulty" prefHeight="25.0" prefWidth="24.0" text="-" />
+      <Button fx:id="increase_difficulty" layoutX="275.0" layoutY="87.0" mnemonicParsing="false" onAction="#increaseDifficulty" text="+" />
+      <Button fx:id="increase_map" layoutX="275.0" layoutY="197.0" mnemonicParsing="false" onAction="#increaseMap" text="+" />
+      <Button fx:id="increase_players" layoutX="275.0" layoutY="285.0" mnemonicParsing="false" onAction="#increasePlayers" text="+" />
+      <Button fx:id="decrease_map" layoutX="133.0" layoutY="197.0" mnemonicParsing="false" onAction="#decreaseMap" prefHeight="25.0" prefWidth="24.0" text="-" />
+      <Button fx:id="decrease_players" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" onAction="#decreasePlayers" prefHeight="25.0" prefWidth="24.0" stylesheets="@resources/ConfigurationStyle.css" text="-" />
+      <Label fx:id="difficulty_label" layoutX="188.0" layoutY="93.0" text="Beginner" textFill="#ffd58b">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="29.9" radius="12.9675" spread="0.38" width="23.97" />
+         </effect></Label>
+      <Label fx:id="map_label" layoutX="188.0" layoutY="202.0" text="Map1" textFill="#ffd58b">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="41.76" radius="22.6025" spread="0.62" width="50.65" />
+         </effect></Label>
+      <Label fx:id="players_label" layoutX="188.0" layoutY="290.0" text="1" textFill="#ffd58b">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="32.86" radius="16.6725" spread="0.86" width="35.83" />
+         </effect></Label>
+      <Button fx:id="next_button" layoutX="169.0" layoutY="344.0" mnemonicParsing="false" onAction="#next" prefHeight="36.0" prefWidth="97.0" styleClass="next-button" stylesheets="@resources/ConfigurationStyle.css" text="Next" textFill="TRANSPARENT" />
+   </children>
+</Pane>

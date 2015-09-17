@@ -1,3 +1,4 @@
+package Mule;
 import javafx.scene.paint.Color;
 
 /**
