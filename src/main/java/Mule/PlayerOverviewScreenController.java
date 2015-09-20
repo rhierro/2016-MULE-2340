@@ -5,10 +5,16 @@ package Mule;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -54,10 +60,22 @@ public class PlayerOverviewScreenController {
             vboxes.get(i).setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
                     "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
 
-
-
-
         }
+    }
+
+    @FXML
+    private void OKPressed(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Map.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = (Stage) ((Node) event.getSource()).getScene()
+                .getWindow();
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        MapController controller = loader.getController();
+        controller.setMainController(mc);
+        controller.generateButtons();
     }
 
     public static String toRGBCode( Color color )

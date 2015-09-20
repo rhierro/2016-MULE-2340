@@ -10,6 +10,7 @@ public class MainController {
     private int difficulty;
     private int map;
     private int numberOfPlayers;
+    private Player currentPlayer;
 
     public void addPlayer(Player p) {
         players.add(p);
@@ -45,5 +46,11 @@ public class MainController {
 
     public ObservableList<Player> getPlayers() {
         return players;
+    }
+
+    public void startGame() {
+
+
+
     }
 }

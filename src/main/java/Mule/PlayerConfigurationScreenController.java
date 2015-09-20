@@ -25,8 +25,6 @@ import java.util.Random;
 
 public class PlayerConfigurationScreenController {
 
-
-
     private int playersAdded = 0;
     private MuleGame mainApp;
     private String name;

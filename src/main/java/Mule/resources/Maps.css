@@ -1,0 +1,10 @@
+.map1-background {
+    -fx-background-image: url("Map1.jpg");
+    -fx-background-size: stretch, auto;
+    -fx-background-position: right bottom;
+    -fx-background-repeat: stretch stretch;
+}
+
+.map-square-button {
+    -fx-background-color: transparent;
+}

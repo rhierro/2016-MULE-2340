@@ -73,7 +73,7 @@ public class ConfigurationScreenController {
             map++;
         }
         if (map == 1) {
-            map_label.setText("Map1");
+            map_label.setText("MapController");
         } else if (map == 2) {
             map_label.setText("Map2");
         } else if (map == 3) {
@@ -87,7 +87,7 @@ public class ConfigurationScreenController {
             map--;
         }
         if (map == 1) {
-            map_label.setText("Map1");
+            map_label.setText("MapController");
         } else if (map == 2) {
             map_label.setText("Map2");
         } else if (map == 3) {

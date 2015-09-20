@@ -8,6 +8,7 @@ public class Player {
     private String race;
     private String name;
     private Color color;
+    private int money;
 
     boolean computer = false;
 
@@ -16,6 +17,7 @@ public class Player {
         race = r;
         name = n;
         color = c;
+        money = 696969;
     }
 
     public Player(String n, String r, Color c, boolean comp) {
@@ -49,5 +51,9 @@ public class Player {
 
     public boolean isComputer() {
         return computer;
+    }
+
+    public void adjustMoney(int difference) {
+        money += difference;
     }
 }
