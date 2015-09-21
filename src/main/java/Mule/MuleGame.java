@@ -28,15 +28,7 @@ public class MuleGame extends Application {
 
     public void start(Stage stage) throws Exception {
         mc = new MainController();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("ConfigurationScreen.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ConfigurationScreenController controller = loader.getController();
-        controller.setMainController(mc);
-
+        mc.startGame(stage);
 
     }
 

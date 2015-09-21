@@ -18,12 +18,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 public class PlayerConfigurationScreenController {
+
+
 
     private int playersAdded = 0;
     private MuleGame mainApp;
@@ -69,6 +70,11 @@ public class PlayerConfigurationScreenController {
         race_combobox.setValue(races.get(0));
 
     }
+
+    public PlayerConfigurationScreenController() {
+
+    }
+
 
     @FXML
     private void continuePressed(ActionEvent event) throws Exception {

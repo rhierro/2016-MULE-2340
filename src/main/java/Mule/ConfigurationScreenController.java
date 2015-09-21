@@ -1,5 +1,7 @@
 package Mule;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -114,8 +116,9 @@ public class ConfigurationScreenController {
     @FXML
     private void next(ActionEvent event) throws Exception{
         mc.setDifficulty(difficulty);
-        mc.setMap(map);
+        mc.setMap(setupMap(map));
         mc.setNumberOfPlayers(players);
+        mc.setMap(setupMap(map));
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("PlayerConfigurationScreen.fxml"));
         Parent config = loader.load();
@@ -129,6 +132,30 @@ public class ConfigurationScreenController {
 
 
 
+
+    }
+
+    private ObservableList<Land[]> setupMap (int i ) {
+        Land[][] landArray = new Land[5][5];
+        if (i == 0) {
+            int[][] mountainArray = {{0, 1}, {1, 1}, {1, 2}, {3, 3}, {4, 3}, {3, 4}, {4, 4}};
+            int[][] waterArray = {{2, 0}, {3, 0}, {4, 0}, {2, 1}, {2, 2}, {2, 3}, {1, 3}, {1, 4}};
+
+            for (int[] mountain : mountainArray) {
+
+                landArray[mountain[0]][mountain[1]].setType("mountain");
+            }
+
+            for (int[] water : waterArray) {
+                landArray[water[0]][water[1]].setType("water");
+            }
+
+            ObservableList<Land[]> map = FXCollections.observableArrayList(landArray);
+            return map;
+
+        }
+
+        return null;
     }
 
     public void setMainController(MainController mc) {
