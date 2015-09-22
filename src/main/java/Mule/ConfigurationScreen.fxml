@@ -21,12 +21,12 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Text>
-      <Button fx:id="decrease_difficulty" layoutX="133.0" layoutY="87.0" mnemonicParsing="false" onAction="#decreaseDifficulty" prefHeight="25.0" prefWidth="24.0" text="-" />
-      <Button fx:id="increase_difficulty" layoutX="275.0" layoutY="87.0" mnemonicParsing="false" onAction="#increaseDifficulty" text="+" />
-      <Button fx:id="increase_map" layoutX="275.0" layoutY="197.0" mnemonicParsing="false" onAction="#increaseMap" text="+" />
-      <Button fx:id="increase_players" layoutX="275.0" layoutY="285.0" mnemonicParsing="false" onAction="#increasePlayers" text="+" />
-      <Button fx:id="decrease_map" layoutX="133.0" layoutY="197.0" mnemonicParsing="false" onAction="#decreaseMap" prefHeight="25.0" prefWidth="24.0" text="-" />
-      <Button fx:id="decrease_players" layoutX="133.0" layoutY="285.0" mnemonicParsing="false" onAction="#decreasePlayers" prefHeight="25.0" prefWidth="24.0" stylesheets="@resources/ConfigurationStyle.css" text="-" />
+      <Button fx:id="decrease_difficulty" layoutX="89.0" layoutY="68.0" mnemonicParsing="false" onAction="#decreaseDifficulty" prefHeight="50.0" prefWidth="50.0" styleClass="left-arrow" stylesheets="@resources/ConfigurationStyle.css" text="-" />
+      <Button fx:id="increase_difficulty" layoutX="267.0" layoutY="68.0" mnemonicParsing="false" onAction="#increaseDifficulty" prefHeight="50.0" prefWidth="50.0" styleClass="right-arrow" stylesheets="@resources/ConfigurationStyle.css" text="+" />
+      <Button fx:id="increase_map" layoutX="267.0" layoutY="178.0" mnemonicParsing="false" onAction="#increaseMap" prefHeight="50.0" prefWidth="50.0" styleClass="right-arrow" stylesheets="@resources/ConfigurationStyle.css" text="+" />
+      <Button fx:id="increase_players" layoutX="267.0" layoutY="266.0" mnemonicParsing="false" onAction="#increasePlayers" prefHeight="50.0" prefWidth="50.0" styleClass="right-arrow" stylesheets="@resources/ConfigurationStyle.css" text="+" />
+      <Button fx:id="decrease_map" layoutX="89.0" layoutY="178.0" mnemonicParsing="false" onAction="#decreaseMap" prefHeight="50.0" prefWidth="50.0" styleClass="left-arrow" stylesheets="@resources/ConfigurationStyle.css" text="-" />
+      <Button fx:id="decrease_players" layoutX="89.0" layoutY="266.0" mnemonicParsing="false" onAction="#decreasePlayers" prefHeight="50.0" prefWidth="50.0" styleClass="left-arrow" stylesheets="@resources/ConfigurationStyle.css" text="-" />
       <Label fx:id="difficulty_label" layoutX="188.0" layoutY="93.0" text="Beginner" textFill="#ffd58b">
          <font>
             <Font name="System Bold" size="14.0" />

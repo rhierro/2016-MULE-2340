@@ -28,7 +28,8 @@ public class MuleGame extends Application {
 
     public void start(Stage stage) throws Exception {
         mc = new MainController();
-        mc.startGame(stage);
+        mc.setStage(stage);
+        mc.startGame();
 
     }
 

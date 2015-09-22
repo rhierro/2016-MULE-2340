@@ -16,8 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class PlayerOverviewScreenController {
     private MainController mc;
     private ObservableList<Player> players;
@@ -66,14 +64,14 @@ public class PlayerOverviewScreenController {
     @FXML
     private void OKPressed(ActionEvent event) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Map.fxml"));
+        loader.setLocation(getClass().getResource("LandBuyingMap.fxml"));
         Parent config = loader.load();
         Scene sceneConfig = new Scene(config);
         Stage stageN = (Stage) ((Node) event.getSource()).getScene()
                 .getWindow();
         stageN.setScene(sceneConfig);
         stageN.show();
-        MapController controller = loader.getController();
+        LandBuyingMapController controller = loader.getController();
         controller.setMainController(mc);
         controller.generateButtons();
     }

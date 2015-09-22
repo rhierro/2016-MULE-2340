@@ -2,6 +2,7 @@ package Mule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,10 +13,13 @@ import javafx.stage.Stage;
 public class MainController {
     private ObservableList<Player> players = FXCollections.observableArrayList();
     private ObservableList<Land[]>  map = FXCollections.observableArrayList();
+    private int mapNum;
+
+    private Stage stage;
 
     private int difficulty;
     private int numberOfPlayers;
-    private Player currentPlayer;
+    private int currentPlayer = 0;
 
     public void addPlayer(Player p) {
         players.add(p);
@@ -41,6 +45,14 @@ public class MainController {
         return map;
     }
 
+    public void setMapNum(int i) {
+        this.mapNum = i;
+    }
+
+    public int getMapNum() {
+        return mapNum;
+    }
+
     public void setNumberOfPlayers(int numOfPlayers) {
         this.numberOfPlayers = numOfPlayers;
     }
@@ -53,7 +65,23 @@ public class MainController {
         return players;
     }
 
-    public void startGame(Stage stage) throws Exception{
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayer);
+    }
+
+    public void advancePlayer() {
+        currentPlayer = (currentPlayer + 1) % 4;
+    }
+
+    public void startGame() throws Exception{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("ConfigurationScreen.fxml"));
         Parent root = loader.load();
@@ -62,9 +90,35 @@ public class MainController {
         stage.show();
         ConfigurationScreenController controller = loader.getController();
         controller.setMainController(this);
+    }
 
+    public void loadPlayerConfigurationScreen() throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("PlayerConfigurationScreen.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = stage;
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        PlayerConfigurationScreenController controller = loader.getController();
+        controller.setMainController(this);
+    }
 
+    public void loadPlayerOverviewScreen() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("PlayerOverviewScreen.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = stage;
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        PlayerOverviewScreenController controller = loader.getController();
+        controller.setMainController(this);
+        controller.generateOverview();
+    }
 
+    public void loadLandBuying() throws Exception {
 
     }
+
 }

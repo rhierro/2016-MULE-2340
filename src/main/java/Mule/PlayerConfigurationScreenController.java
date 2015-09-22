@@ -103,17 +103,10 @@ public class PlayerConfigurationScreenController {
                     mc.addPlayer(c);
                 }
             }
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("PlayerOverviewScreen.fxml"));
-            Parent config = loader.load();
-            Scene sceneConfig = new Scene(config);
+
             Stage stageN = (Stage) ((Node) event.getSource()).getScene()
                     .getWindow();
-            stageN.setScene(sceneConfig);
-            stageN.show();
-            PlayerOverviewScreenController controller = loader.getController();
-            controller.setMainController(mc);
-            controller.generateOverview();
+            mc.loadPlayerOverviewScreen();
 
 
 
