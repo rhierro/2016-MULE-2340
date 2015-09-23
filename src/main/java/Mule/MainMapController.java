@@ -1,45 +1,25 @@
 package Mule;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-
-import java.util.Random;
 
 /**
- * Created by Henry on 9/18/2015.
+ * Created by Henry on 9/22/2015.
  */
-public class LandBuyingMapController {
+public class MainMapController {
 
     private MainController mc;
-    private Land[][] landArray = new Land[5][5];
-    private int currentPlayer = 0;
     private ObservableList<Player> playerArray;
     private ObservableList<Land[]> landList;
-    private int currentRound = 1;
 
     @FXML
     private Pane map_pane;
 
-    @FXML
-    private Label test_label;
-
-    @FXML
-    private void initialize() {
-    }
-
-    private Text info;
-    private TextFlow infoFlow;
-
-    @FXML
     public void generateButtons() throws Exception {
         playerArray = mc.getPlayers();
         landList = mc.getMap();
@@ -72,13 +52,12 @@ public class LandBuyingMapController {
                     landButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
                             "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
                 }
-                if ((i == 2) && (j == 2)) { // set middle button to be pass button
-                    landButton.setStyle("-fx-background-color: whitesmoke; -fx-border-color: black; -fx-border-width: 15px");
-                    landButton.setText("PASS");
+                if ((i == 2) && (j == 2)) { // set middle button to be town button
+
                     landButton.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            passButtonPressed(event);
+                            townButtonPressed(event);
                             //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
                         }
                     });
@@ -94,60 +73,19 @@ public class LandBuyingMapController {
                 map_pane.getChildren().add(landButton);
             }
         }
-        info = new Text(3, 391, "test");
-        //info.setFill(new Color(0, 0, 0, 0.6));
-        infoFlow = new TextFlow(info);
-        infoFlow.setLayoutX(3);
-        infoFlow.setLayoutY(385);
-        infoFlow.setStyle("-fx-background-color: lightgray");
-        map_pane.getChildren().add(infoFlow);
     }
 
-    public void passButtonPressed(ActionEvent event) {
-
+    private void townButtonPressed(ActionEvent event){
         try {
-            if (currentPlayer == 3) {
-                mc.loadMainMapScreen();
-            }
+            mc.loadTownMapScreen();
         }
         catch (Exception e) {
 
         }
     }
 
-    public void buttonPressed(ActionEvent event) {
-        try {
-            if (currentPlayer < 4) {
-                Button sourceButton = (Button) event.getSource();
-                double buttonX = sourceButton.getLayoutX();
-                double buttonY = sourceButton.getLayoutY();
-                int intButtonXIndex = (int) (buttonX - 1) / 120;
-                int intButtonYIndex = (int) (buttonY - 1) / 80;
+    private void buttonPressed(ActionEvent event) {
 
-                if (landList.get(intButtonXIndex)[intButtonYIndex].getOwner() == null) {
-                    landList.get(intButtonXIndex)[intButtonYIndex].setOwner(playerArray.get(currentPlayer));
-
-                    test_label.setText(String.format("%d, %d", (int) buttonX, (int) buttonY));
-                    int red = (int) (playerArray.get(currentPlayer).getColor().getRed() * 255);
-                    int green = (int) (playerArray.get(currentPlayer).getColor().getGreen() * 255);
-                    int blue = (int) (playerArray.get(currentPlayer).getColor().getBlue() * 255);
-                    String color = toRGBCode(playerArray.get(currentPlayer).getColor());
-                    sourceButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                            "-fx-background-color: rgba(%s, %s, %s, 0.3);", color, red, green, blue));
-                    sourceButton.setText(playerArray.get(currentPlayer).getName());
-                    playerArray.get(currentPlayer).adjustMoney(-6969);
-
-                    if (currentPlayer == 3) {
-                        mc.loadMainMapScreen();
-                    } else {
-                        currentPlayer++;
-                    }
-
-                }
-            }
-        } catch (Exception e) {
-
-        }
     }
 
     public static String toRGBCode(Color color) {
@@ -160,7 +98,4 @@ public class LandBuyingMapController {
     public void setMainController(MainController mc) {
         this.mc = mc;
     }
-
-
-
 }

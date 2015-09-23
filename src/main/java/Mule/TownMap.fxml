@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="town-map-background" stylesheets="@resources/Maps.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mule.TownMapController">
+   <children>
+      <Button fx:id="returnToMap_button" layoutX="83.0" layoutY="343.0" mnemonicParsing="false" onAction="#returntoMapPressed" prefHeight="50.0" prefWidth="103.0" text="Return to Map" />
+   </children>
+</Pane>

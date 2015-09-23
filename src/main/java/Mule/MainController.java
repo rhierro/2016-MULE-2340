@@ -77,6 +77,10 @@ public class MainController {
         return players.get(currentPlayer);
     }
 
+    public int getCurrentPlayerNumber() {
+        return currentPlayer;
+    }
+
     public void advancePlayer() {
         currentPlayer = (currentPlayer + 1) % 4;
     }
@@ -117,8 +121,50 @@ public class MainController {
         controller.generateOverview();
     }
 
-    public void loadLandBuying() throws Exception {
+    public void loadLandBuyingMapScreen() throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("LandBuyingMap.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = stage;
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        LandBuyingMapController controller = loader.getController();
+        controller.setMainController(this);
+        controller.generateButtons();
+    }
+
+    public void loadMainMapScreen() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("MainMap.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = stage;
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        MainMapController controller = loader.getController();
+        controller.setMainController(this);
+        controller.generateButtons();
+    }
+
+    public void loadTownMapScreen() throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("TownMap.fxml"));
+        Parent config = loader.load();
+        Scene sceneConfig = new Scene(config);
+        Stage stageN = stage;
+        stageN.setScene(sceneConfig);
+        stageN.show();
+        TownMapController controller = loader.getController();
+        controller.setMainController(this);
 
     }
 
+    public void initiateRound() throws Exception{
+        loadLandBuyingMapScreen();
+    }
+
+    public void startTurn() {
+
+    }
 }

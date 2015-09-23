@@ -8,3 +8,9 @@
 .map-square-button {
     -fx-background-color: transparent;
 }
+
+.town-map-background {
+    -fx-background-image: url("townMap.jpg");
+    -fx-background-position: right bottom;
+    -fx-background-repeat: stretch stretch;
+}

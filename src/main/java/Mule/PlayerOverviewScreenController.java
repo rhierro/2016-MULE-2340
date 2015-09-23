@@ -63,17 +63,7 @@ public class PlayerOverviewScreenController {
 
     @FXML
     private void OKPressed(ActionEvent event) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("LandBuyingMap.fxml"));
-        Parent config = loader.load();
-        Scene sceneConfig = new Scene(config);
-        Stage stageN = (Stage) ((Node) event.getSource()).getScene()
-                .getWindow();
-        stageN.setScene(sceneConfig);
-        stageN.show();
-        LandBuyingMapController controller = loader.getController();
-        controller.setMainController(mc);
-        controller.generateButtons();
+        mc.initiateRound();
     }
 
     public static String toRGBCode( Color color )
