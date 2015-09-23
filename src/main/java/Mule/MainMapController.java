@@ -16,11 +16,14 @@ public class MainMapController {
     private MainController mc;
     private ObservableList<Player> playerArray;
     private ObservableList<Land[]> landList;
+    private Player currentPlayer;
+
 
     @FXML
     private Pane map_pane;
 
     public void generateButtons() throws Exception {
+        currentPlayer = mc.getCurrentPlayer();
         playerArray = mc.getPlayers();
         landList = mc.getMap();
         int mapNum = mc.getMapNum();
@@ -34,8 +37,8 @@ public class MainMapController {
                     "    -fx-background-repeat: stretch stretch;", image));
         }
 
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
+        for (int i = 0; i < 5; i++) { //column
+            for (int j = 0; j < 5; j++) { //row
                 Button landButton = new Button();
                 landButton.setPrefHeight(80.0);
                 landButton.setPrefWidth(120.0);
@@ -53,7 +56,7 @@ public class MainMapController {
                             "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
                 }
                 if ((i == 2) && (j == 2)) { // set middle button to be town button
-
+                    landButton.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 25px;");
                     landButton.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {

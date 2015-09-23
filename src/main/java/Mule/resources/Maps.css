@@ -7,10 +7,17 @@
 
 .map-square-button {
     -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 25px;
 }
 
 .town-map-background {
     -fx-background-image: url("townMap.jpg");
     -fx-background-position: right bottom;
     -fx-background-repeat: stretch stretch;
+}
+
+.pub-button {
+    -fx-background-color: transparent;
+
 }

@@ -24,7 +24,7 @@ public class LandBuyingMapController {
     private int currentPlayer = 0;
     private ObservableList<Player> playerArray;
     private ObservableList<Land[]> landList;
-    private int currentRound = 1;
+    private int currentRound;
 
     @FXML
     private Pane map_pane;
@@ -124,8 +124,8 @@ public class LandBuyingMapController {
                 int intButtonXIndex = (int) (buttonX - 1) / 120;
                 int intButtonYIndex = (int) (buttonY - 1) / 80;
 
-                if (landList.get(intButtonXIndex)[intButtonYIndex].getOwner() == null) {
-                    landList.get(intButtonXIndex)[intButtonYIndex].setOwner(playerArray.get(currentPlayer));
+                if (landList.get(intButtonYIndex)[intButtonXIndex].getOwner() == null) {
+                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(playerArray.get(currentPlayer));
 
                     test_label.setText(String.format("%d, %d", (int) buttonX, (int) buttonY));
                     int red = (int) (playerArray.get(currentPlayer).getColor().getRed() * 255);

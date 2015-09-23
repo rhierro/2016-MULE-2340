@@ -12,11 +12,19 @@ public class TownMapController {
     private MainController mc;
 
     @FXML
-    Button returnToMap_button;
+    private Button returnToMap_button;
+    @FXML
+    private Button pub_button;
 
     @FXML
-    private void returntoMapPressed(ActionEvent event) throws Exception{
+    private void returntoMapPressed(ActionEvent event) throws Exception {
         mc.loadMainMapScreen();
+    }
+
+    @FXML
+    private void pubPressed(ActionEvent event) throws Exception {
+        //todo: end turn
+        mc.endTurn();
     }
 
     public void setMainController(MainController mc) {

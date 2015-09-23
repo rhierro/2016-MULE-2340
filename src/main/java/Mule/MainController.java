@@ -20,6 +20,7 @@ public class MainController {
     private int difficulty;
     private int numberOfPlayers;
     private int currentPlayer = 0;
+    private int currentRound = 1;
 
     public void addPlayer(Player p) {
         players.add(p);
@@ -79,6 +80,10 @@ public class MainController {
 
     public int getCurrentPlayerNumber() {
         return currentPlayer;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
     }
 
     public void advancePlayer() {
@@ -166,5 +171,20 @@ public class MainController {
 
     public void startTurn() {
 
+    }
+
+    public void endTurn() throws Exception {
+        if (currentPlayer < 3) {
+            currentPlayer++;
+            loadMainMapScreen();
+        } else {
+            currentRound++;
+            //TEMP: SKIP AUCTION AND RETURN TO MAP
+            currentPlayer = 0;
+            loadLandBuyingMapScreen();
+            //todo: remove temp
+            //loadMainMapScreen();
+            //todo: show auction
+        }
     }
 }
