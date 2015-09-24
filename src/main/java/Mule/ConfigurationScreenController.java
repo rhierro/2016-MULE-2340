@@ -133,8 +133,8 @@ public class ConfigurationScreenController {
 
     }
 
-    private ObservableList<Land[]> setupMap (int m ) {
-        Land[][] landArray = new Land[5][5];
+    private ObservableList<Land[]> setupMap (int map ) {
+        Land[][] landArray = new Land[5][9];
         List<int[]> mountainArray = new ArrayList<>();
         List<int[]> waterArray = new ArrayList<>();
         for (int i = 0; i < landArray.length; i++) {
@@ -142,19 +142,11 @@ public class ConfigurationScreenController {
                 landArray[i][j] = new Land();
             }
         }
-        if (m == 0) {
-            int[][] mountains = {{0, 1}, {1, 1}, {1, 2}, {3, 3}, {4, 3}, {3, 4}, {4, 4}};
-            int[][] waters = {{2, 0}, {3, 0}, {4, 0}, {2, 1}, {2, 2}, {2, 3}, {1, 3}, {1, 4}};
-
-            for (int[] mtn : mountains) {
-                mountainArray.add(mtn);
-            }
-            for (int[] wtr : waters) {
-                waterArray.add(wtr);
-            }
-        } else if (m == 1) {
-            int[][] mountains = {{3, 0}, {0, 1}, {1, 1}, {4, 1}, {1, 3}, {2, 3}, {0, 4}, {1, 4}};
-            int[][] waters = {{2, 0}, {3, 1}, {0, 2}, {1, 2}, {3, 2}, {3, 3}, {4, 4}};
+        if (map == 0) {
+            int[][] waters = {{0, 2}, {1, 3}, {1, 4}, {1, 6}, {1, 7}, {1, 8}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 6}, {1, 7}, {1, 8},
+                    {3, 4}, {3, 6}, {4, 4}, {4, 5}, {4, 6}};
+            int[][] mountains = {{0, 3}, {0, 4}, {0, 6}, {0, 7}, {1, 0}, {1, 1}, {1, 2}, {1, 5}, {2, 7}, {2, 8}, {3, 1}, {3, 2},
+                    {3, 3}, {3, 7}, {3, 8}, {4, 0}, {4, 1}, {4, 2}, {4, 8}};
 
             for (int[] mtn : mountains) {
                 mountainArray.add(mtn);
@@ -166,16 +158,16 @@ public class ConfigurationScreenController {
         if ((waterArray.size() != 0) && (mountainArray.size() != 0)) {
             for (int[] mountain : mountainArray) {
 
-                landArray[mountain[0]][mountain[1]].setType("mountain");
+                landArray[mountain[0]][mountain[1]].setType(Land.LandType.Mountain);
             }
 
             for (int[] water : waterArray) {
-                landArray[water[0]][water[1]].setType("water");
+                landArray[water[0]][water[1]].setType(Land.LandType.Water);
             }
         }
 
-        ObservableList<Land[]> map = FXCollections.observableArrayList(landArray);
-        return map;
+        return FXCollections.observableArrayList(landArray);
+
 
 
 

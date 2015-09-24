@@ -4,7 +4,12 @@ package Mule;
  * Created by Henry on 9/18/2015.
  */
 public class Land {
-    private String type = "plains";
+    public enum LandType {
+        Plains,
+        Water,
+        Mountain
+    }
+    private LandType type = LandType.Plains;
     private Player owner;
     private int numOfMules;
     private int production;
@@ -15,11 +20,11 @@ public class Land {
 
     }
 
-    public void setType(String type) {
+    public void setType(LandType type) {
         this.type = type;
     }
 
-    public String getType() {
+    public LandType getType() {
         return type;
     }
 

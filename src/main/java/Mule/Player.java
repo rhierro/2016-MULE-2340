@@ -53,6 +53,10 @@ public class Player {
         return computer;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public void adjustMoney(int difference) {
         money += difference;
     }
