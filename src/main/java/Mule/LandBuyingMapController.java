@@ -1,6 +1,5 @@
 package Mule;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import java.util.Random;
+import java.util.PriorityQueue;
 
 /**
  * Created by Henry on 9/18/2015.
@@ -22,10 +21,11 @@ public class LandBuyingMapController {
 
     private MainController mc;
     private Land[][] landArray = new Land[5][9];
-    private int currentPlayer = 0;
-    private ObservableList<Player> playerArray;
+    private int currentPlayerNum = 0;
+    private PriorityQueue<Player> playerArray;
     private ObservableList<Land[]> landList;
     private int currentRound;
+    private Player player;
 
     @FXML
     private Pane map_pane;
@@ -43,8 +43,9 @@ public class LandBuyingMapController {
     @FXML
     public void generateButtons() throws Exception {
         currentRound = mc.getCurrentRound();
-        playerArray = mc.getPlayers();
+        playerArray = new PriorityQueue<Player>(mc.getPlayers());
         landList = mc.getMap();
+        player = playerArray.poll();
         int mapNum = mc.getMapNum();
         if (mapNum == 0) {
             String image = getClass().getResource("resources/MuleMap0-Grid.jpg").toExternalForm();
@@ -111,7 +112,7 @@ public class LandBuyingMapController {
             }
         }
         info = new Text("test");
-        info.setText("Player " + (currentPlayer + 1) + "-- $" + playerArray.get(currentPlayer).getMoney());
+        info.setText("Player " + (currentPlayerNum + 1) + "--" + player.getName() + "-- $" + player.getMoney());
         infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
@@ -122,11 +123,12 @@ public class LandBuyingMapController {
     public void passButtonPressed(ActionEvent event) {
 
         try {
-            if (currentPlayer == 3) {
-                mc.loadMainMapScreen();
+            if (currentPlayerNum == 3) {
+                mc.startTurn();
             } else {
-                currentPlayer++;
-                info.setText("Player " + (currentPlayer + 1) + "-- $" + playerArray.get(currentPlayer).getMoney());
+                currentPlayerNum++;
+                player = playerArray.poll();
+                info.setText("Player " + (currentPlayerNum + 1)  + "--" + player.getName() + "-- $" + player.getMoney());
             }
 
         }
@@ -137,7 +139,7 @@ public class LandBuyingMapController {
 
     public void buttonPressed(ActionEvent event) {
         try {
-            if (currentPlayer < 4) {
+            if (currentPlayerNum < 4) {
                 Button sourceButton = (Button) event.getSource();
                 double buttonX = sourceButton.getLayoutX();
                 double buttonY = sourceButton.getLayoutY();
@@ -145,30 +147,32 @@ public class LandBuyingMapController {
                 int intButtonYIndex = (int) (buttonY - 1) / 144;
 
                 if (landList.get(intButtonYIndex)[intButtonXIndex].getOwner() == null) {
-                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(playerArray.get(currentPlayer));
+                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(player);
 
                     test_label.setText(String.format("%d, %d", (int) buttonX, (int) buttonY));
-                    int red = (int) (playerArray.get(currentPlayer).getColor().getRed() * 255);
-                    int green = (int) (playerArray.get(currentPlayer).getColor().getGreen() * 255);
-                    int blue = (int) (playerArray.get(currentPlayer).getColor().getBlue() * 255);
-                    String color = toRGBCode(playerArray.get(currentPlayer).getColor());
+                    int red = (int) (player.getColor().getRed() * 255);
+                    int green = (int) (player.getColor().getGreen() * 255);
+                    int blue = (int) (player.getColor().getBlue() * 255);
+                    String color = toRGBCode(player.getColor());
                     sourceButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
                             "-fx-background-color: rgba(%s, %s, %s, 0.3);", color, red, green, blue));
-                    sourceButton.setText(playerArray.get(currentPlayer).getName());
-                    playerArray.get(currentPlayer).adjustMoney(-6969);
-
-                    if (currentPlayer == 3) {
-                        mc.loadMainMapScreen();
+                    sourceButton.setText(player.getName());
+                    if (currentRound > 2) {
+                        player.adjustMoney(-6969);
+                    }
+                    if (currentPlayerNum == 3) {
+                        mc.startTurn();
                     } else {
-                        currentPlayer++;
+                        currentPlayerNum++;
+                        player = playerArray.poll();
                     }
 
                 }
-                info.setText("Player " + (currentPlayer + 1) + "-- $" + playerArray.get(currentPlayer).getMoney());
+                info.setText("Player " + (currentPlayerNum + 1 + "--" + player.getName() + "-- $" + player.getMoney()));
 
             }
         } catch (Exception e) {
-
+            System.out.println("exception at land buying button");
         }
     }
 

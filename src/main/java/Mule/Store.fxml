@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mule.StoreController">
+   <children>
+      <Label layoutX="258.0" layoutY="24.0" prefHeight="39.0" prefWidth="65.0" text="Store">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ListView fx:id="store_listView" layoutX="346.0" layoutY="76.0" prefHeight="214.0" prefWidth="200.0" />
+      <ListView fx:id="player_listView" layoutX="35.0" layoutY="76.0" prefHeight="214.0" prefWidth="200.0" />
+      <Label layoutX="432.0" layoutY="55.0" text="Store" />
+      <Label layoutX="107.0" layoutY="55.0" text="Player" />
+      <Button fx:id="toStore_button" layoutX="266.0" layoutY="96.0" mnemonicParsing="false" onAction="#toStorePressed" text="--&gt;" />
+      <Button fx:id="toPlayer_button" layoutX="266.0" layoutY="141.0" mnemonicParsing="false" onAction="#toPlayerPressed" text="&lt;--" />
+      <Label layoutX="35.0" layoutY="305.0" text="Money:" />
+      <Label fx:id="playerMoney_label" layoutX="35.0" layoutY="338.0" />
+      <Button fx:id="back_button" layoutX="257.0" layoutY="343.0" mnemonicParsing="false" onAction="#backPressed" text="Back" />
+   </children>
+</Pane>

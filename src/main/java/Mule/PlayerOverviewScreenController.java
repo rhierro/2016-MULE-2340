@@ -16,9 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class PlayerOverviewScreenController {
     private MainController mc;
-    private ObservableList<Player> players;
+    private ArrayList<Player> players;
 
     @FXML
     private ObservableList<VBox> vboxes = FXCollections.observableArrayList();
@@ -44,7 +46,7 @@ public class PlayerOverviewScreenController {
     }
 
     public void generateOverview() {
-        players = mc.getPlayers();
+        players = new ArrayList<Player>(mc.getPlayers());
         for (int i = 0; i < vboxes.size() ; i++) {
             Label player = new Label(String.format("Player %d", i+1));
             vboxes.get(i).getChildren().add(player);

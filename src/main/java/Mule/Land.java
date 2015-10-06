@@ -12,7 +12,7 @@ public class Land {
     private LandType type = LandType.Plains;
     private Player owner;
     private int numOfMules;
-    private int production;
+    private Mule.MuleType productionType;
     private int x;
     private int y;
 
@@ -28,6 +28,14 @@ public class Land {
         return type;
     }
 
+    public void setProductionType(Mule.MuleType productionType) {
+        this.productionType = productionType;
+    }
+
+    public Mule.MuleType getProductionType() {
+        return productionType;
+    }
+
     public void setOwner(Player owner) {
         this.owner = owner;
     }
@@ -35,4 +43,5 @@ public class Land {
     public Player getOwner() {
         return owner;
     }
+
 }

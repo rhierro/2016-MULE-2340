@@ -1,5 +1,12 @@
 package Mule;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.paint.Color;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Henry on 9/9/2015.
@@ -9,6 +16,9 @@ public class Player {
     private String name;
     private Color color;
     private int money;
+    private Mule mule;
+    private ObservableMap<Store.Item, Integer> inventoryAmount = FXCollections.observableHashMap();
+    private ObservableList<Store.Item> inventory = FXCollections.observableArrayList();
 
     boolean computer = false;
 
@@ -60,4 +70,53 @@ public class Player {
     public void adjustMoney(int difference) {
         money += difference;
     }
+
+    public int getScore() {
+        //todo: add more score variables
+        return money;
+    }
+
+    //returns mule currently in player's possession
+    public Mule getMule() {
+        return mule;
+    }
+
+    public void setMule(Mule mule) {
+    this.mule = mule;
+    }
+
+    public void removeMule() {
+        mule = null;
+    }
+
+    public boolean hasMule() {
+        return (mule != null);
+    }
+
+    public ObservableList<Store.Item> getInventory() {
+        return inventory;
+    }
+
+    public int getInventoryAmount(Store.Item item) {
+        if (inventory.contains(item)) {
+            return inventoryAmount.get(item);
+        } else {
+            return 0;
+        }
+    }
+
+    public void changeInventory(Store.Item item, int adjustment) {
+
+        int amount = 0;
+        if (inventoryAmount.get(item) != null) {
+            amount = inventoryAmount.get(item);
+        }
+        inventoryAmount.put(item, amount + adjustment);
+
+        if (!inventory.contains(item)) {
+            inventory.add(item);
+        }
+    }
+
+
 }

@@ -10,15 +10,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.util.PriorityQueue;
+import java.util.Timer;
+
 /**
  * Created by Henry on 9/22/2015.
  */
 public class MainMapController {
 
     private MainController mc;
-    private ObservableList<Player> playerArray;
+    private PriorityQueue<Player> playerArray;
     private ObservableList<Land[]> landList;
-    private int currentPlayer;
+    private int currentPlayerNum;
+    private Player currentPlayer;
+    private Timer timer;
 
 
     @FXML
@@ -26,9 +31,12 @@ public class MainMapController {
 
     private Text info;
     private TextFlow infoFlow;
+    private Text time;
+    private TextFlow timeFlow;
 
-    public void generateButtons() throws Exception {
-        currentPlayer = mc.getCurrentPlayerNumber();
+    public void generateButtons() throws Exception { //basically the initiate method
+        currentPlayerNum = mc.getCurrentPlayerNumber();
+        currentPlayer = mc.getCurrentPlayer();
         playerArray = mc.getPlayers();
         landList = mc.getMap();
         int mapNum = mc.getMapNum();
@@ -81,19 +89,31 @@ public class MainMapController {
                 map_pane.getChildren().add(landButton);
             }
         }
-        info = new Text("test");
-        //info.setFill(new Color(0, 0, 0, 0.6));
-        info.setText("Player " + (currentPlayer + 1 ) + "-- $" + playerArray.get(currentPlayer).getMoney());
+        info = new Text("");
+        info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName()  + "-- $" + (currentPlayer.getMoney()));
         infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
         infoFlow.setStyle("-fx-background-color: lightgray");
         map_pane.getChildren().add(infoFlow);
+        time = new Text("10");
+        timeFlow = new TextFlow(time);
+        timeFlow.setLayoutX(500);
+        timeFlow.setLayoutY(689);
+        timeFlow.setStyle("-fx-background-color: lightgray");
+        map_pane.getChildren().add(timeFlow);
+
+
+    }
+
+    public void updateTime() {
+        time.setText(String.format("%d", mc.getRoundTime()));
+
     }
 
     private void townButtonPressed(ActionEvent event){
         try {
-            mc.loadTownMapScreen();
+            mc.switchtoTownMapScreen();
         }
         catch (Exception e) {
 
@@ -102,7 +122,23 @@ public class MainMapController {
     }
 
     private void buttonPressed(ActionEvent event) {
+        if (currentPlayer.hasMule()) {
+            Button b = (Button) event.getSource();
+            double buttonX = b.getLayoutX();
+            double buttonY = b.getLayoutY();
+            int intButtonXIndex = (int) (buttonX - 1) / 120;
+            int intButtonYIndex = (int) (buttonY - 1) / 144;
+            Land land = landList.get(intButtonYIndex)[intButtonXIndex];
+            if (land.getOwner() == currentPlayer) {
+                land.setProductionType(currentPlayer.getMule().getType());
+            } else {
+                currentPlayer.removeMule();
+            }
+        }
+    }
 
+    public void cancelTimer() {
+        timer.cancel();
     }
 
     public static String toRGBCode(Color color) {
