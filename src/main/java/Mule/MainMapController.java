@@ -4,12 +4,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Timer;
 
@@ -24,6 +28,7 @@ public class MainMapController {
     private int currentPlayerNum;
     private Player currentPlayer;
     private Timer timer;
+    private ArrayList<Button> buttonList = new ArrayList<>();
 
 
     @FXML
@@ -87,14 +92,20 @@ public class MainMapController {
                     });
                 }
                 map_pane.getChildren().add(landButton);
+                buttonList.add(landButton);
             }
         }
+
+        for (Button b : buttonList) {
+            addTypeIcon(b);
+        }
+        Color color = currentPlayer.getColor();
         info = new Text("");
         info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName()  + "-- $" + (currentPlayer.getMoney()));
         infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
-        infoFlow.setStyle("-fx-background-color: lightgray");
+        infoFlow.setStyle("-fx-background-color:" + toRGBCode(color));
         map_pane.getChildren().add(infoFlow);
         time = new Text("10");
         timeFlow = new TextFlow(time);
@@ -130,11 +141,44 @@ public class MainMapController {
             int intButtonYIndex = (int) (buttonY - 1) / 144;
             Land land = landList.get(intButtonYIndex)[intButtonXIndex];
             if (land.getOwner() == currentPlayer) {
-                land.setProductionType(currentPlayer.getMule().getType());
+                if (!land.hasMule()) {
+                    land.setProductionType(currentPlayer.getMule().getType());
+                    addTypeIcon(b);
+                }
             } else {
                 currentPlayer.removeMule();
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Mule");
+                alert.setHeaderText("Mule Ran Away");
+                alert.setContentText(String.format("Your Mule has run away! Sucks to suck."));
+                alert.showAndWait();
             }
         }
+    }
+
+    private void addTypeIcon(Button b) {
+        double buttonX = b.getLayoutX();
+        double buttonY = b.getLayoutY();
+        int intButtonXIndex = (int) (buttonX - 1) / 120;
+        int intButtonYIndex = (int) (buttonY - 1) / 144;
+        Land land = landList.get(intButtonYIndex)[intButtonXIndex];
+        ImageView view = new ImageView();
+        view.setX(buttonX);
+        view.setY(buttonY);
+        Image image;
+        Mule.MuleType type = land.getProductionType();
+        if (type == Mule.MuleType.SMITHORE) {
+            image = new Image(getClass().getResourceAsStream("resources/SmithoreIcon.png"));
+            view.setImage(image);
+        } else if (type == Mule.MuleType.FOOD) {
+            image = new Image(getClass().getResourceAsStream("resources/FoodIcon.png"));
+            view.setImage(image);
+        } else if (type == Mule.MuleType.ENERGY) {
+            image = new Image(getClass().getResourceAsStream("resources/EnergyIcon.png"));
+            view.setImage(image);
+        }
+        map_pane.getChildren().add(view);
+
     }
 
     public void cancelTimer() {

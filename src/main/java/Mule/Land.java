@@ -11,7 +11,7 @@ public class Land {
     }
     private LandType type = LandType.Plains;
     private Player owner;
-    private int numOfMules;
+    private boolean hasMule;
     private Mule.MuleType productionType;
     private int x;
     private int y;
@@ -20,8 +20,13 @@ public class Land {
 
     }
 
+    public boolean hasMule() {
+        return hasMule();
+    }
+
     public void setType(LandType type) {
         this.type = type;
+        hasMule = true;
     }
 
     public LandType getType() {

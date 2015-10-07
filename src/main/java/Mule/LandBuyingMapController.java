@@ -25,7 +25,7 @@ public class LandBuyingMapController {
     private PriorityQueue<Player> playerArray;
     private ObservableList<Land[]> landList;
     private int currentRound;
-    private Player player;
+    private Player currentPlayer;
 
     @FXML
     private Pane map_pane;
@@ -45,7 +45,7 @@ public class LandBuyingMapController {
         currentRound = mc.getCurrentRound();
         playerArray = new PriorityQueue<Player>(mc.getPlayers());
         landList = mc.getMap();
-        player = playerArray.poll();
+        currentPlayer = playerArray.poll();
         int mapNum = mc.getMapNum();
         if (mapNum == 0) {
             String image = getClass().getResource("resources/MuleMap0-Grid.jpg").toExternalForm();
@@ -111,12 +111,13 @@ public class LandBuyingMapController {
                 map_pane.getChildren().add(landButton);
             }
         }
+        Color color = currentPlayer.getColor();
         info = new Text("test");
-        info.setText("Player " + (currentPlayerNum + 1) + "--" + player.getName() + "-- $" + player.getMoney());
+        info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney());
         infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
-        infoFlow.setStyle("-fx-background-color: lightgray");
+        infoFlow.setStyle("-fx-background-color:" + toRGBCode(color));
         map_pane.getChildren().add(infoFlow);
     }
 
@@ -127,8 +128,8 @@ public class LandBuyingMapController {
                 mc.startTurn();
             } else {
                 currentPlayerNum++;
-                player = playerArray.poll();
-                info.setText("Player " + (currentPlayerNum + 1)  + "--" + player.getName() + "-- $" + player.getMoney());
+                currentPlayer = playerArray.poll();
+                info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney());
             }
 
         }
@@ -147,28 +148,28 @@ public class LandBuyingMapController {
                 int intButtonYIndex = (int) (buttonY - 1) / 144;
 
                 if (landList.get(intButtonYIndex)[intButtonXIndex].getOwner() == null) {
-                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(player);
+                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(currentPlayer);
 
                     test_label.setText(String.format("%d, %d", (int) buttonX, (int) buttonY));
-                    int red = (int) (player.getColor().getRed() * 255);
-                    int green = (int) (player.getColor().getGreen() * 255);
-                    int blue = (int) (player.getColor().getBlue() * 255);
-                    String color = toRGBCode(player.getColor());
+                    int red = (int) (currentPlayer.getColor().getRed() * 255);
+                    int green = (int) (currentPlayer.getColor().getGreen() * 255);
+                    int blue = (int) (currentPlayer.getColor().getBlue() * 255);
+                    String color = toRGBCode(currentPlayer.getColor());
                     sourceButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
                             "-fx-background-color: rgba(%s, %s, %s, 0.3);", color, red, green, blue));
-                    sourceButton.setText(player.getName());
+                    sourceButton.setText(currentPlayer.getName());
                     if (currentRound > 2) {
-                        player.adjustMoney(-6969);
+                        currentPlayer.adjustMoney(-6969);
                     }
                     if (currentPlayerNum == 3) {
                         mc.startTurn();
                     } else {
                         currentPlayerNum++;
-                        player = playerArray.poll();
+                        currentPlayer = playerArray.poll();
                     }
 
                 }
-                info.setText("Player " + (currentPlayerNum + 1 + "--" + player.getName() + "-- $" + player.getMoney()));
+                info.setText("Player " + (currentPlayerNum + 1 + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney()));
 
             }
         } catch (Exception e) {
