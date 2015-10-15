@@ -5,6 +5,7 @@ package Mule;
  */
 public class Mule {
     public enum MuleType {
+        NONE,
         FOOD,
         ENERGY,
         SMITHORE

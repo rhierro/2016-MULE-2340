@@ -144,6 +144,7 @@ public class MainMapController {
                 if (!land.hasMule()) {
                     land.setProductionType(currentPlayer.getMule().getType());
                     addTypeIcon(b);
+                    land.setHasMule(true);
                 }
             } else {
                 currentPlayer.removeMule();

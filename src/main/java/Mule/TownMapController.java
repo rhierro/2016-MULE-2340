@@ -77,7 +77,7 @@ public class TownMapController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.format("Purchase a Mule eto outfit it!"));
+            alert.setContentText(String.format("Purchase a Mule to outfit it!"));
             alert.showAndWait();
         }
     }
@@ -97,7 +97,7 @@ public class TownMapController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.format("Purchase a Mule eto outfit it!"));
+            alert.setContentText(String.format("Purchase a Mule to outfit it!"));
             alert.showAndWait();
         }
     }
@@ -117,7 +117,7 @@ public class TownMapController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.format("Purchase a Mule eto outfit it!"));
+            alert.setContentText(String.format("Purchase a Mule to outfit it!"));
             alert.showAndWait();
         }
     }

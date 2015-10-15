@@ -42,6 +42,7 @@ public class MainController {
     FXMLLoader mainMapLoader;
     FXMLLoader townMapLoader;
     FXMLLoader storeLoader;
+    FXMLLoader playerSummaryLoader;
     MainMapController mainMapController;
     TownMapController townMapController;
     StoreController storeController;
@@ -82,6 +83,7 @@ public class MainController {
             mainMapLoader = new FXMLLoader(getClass().getResource("MainMap.fxml"));
             townMapLoader = new FXMLLoader(getClass().getResource("TownMap.fxml"));
             storeLoader = new FXMLLoader(getClass().getResource("Store.fxml"));
+            playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
         } catch (Exception e) {
 
         }
@@ -215,6 +217,14 @@ public class MainController {
         storeController.setMainController(this);
     }
 
+    public void loadPlayerSummaryScreen() throws Exception {
+        Scene sceneConfig = new Scene(playerSummaryLoader.load());
+        stage.setScene(sceneConfig);
+        stage.show();
+        PlayerSummaryController controller = playerSummaryLoader.getController();
+        controller.setMainController(this);
+    }
+
     public void switchtoMainMapScreen() {
         stage.setScene(mainMapScene);
         stage.show();
@@ -314,18 +324,58 @@ public class MainController {
 
     public void endRound() {
         try {
+            calculateProduction();
             currentRound++;
-            //TEMP: SKIP AUCTION AND RETURN TO MAP
+
             players = new PriorityQueue<>(tempPlayers);
             tempPlayers.clear();
             currentPlayerNum = 0;
             landBuyingMapLoader = new FXMLLoader(getClass().getResource("LandBuyingMap.fxml"));
-            initiateRound();
-            //todo: remove temp
-            //loadMainMapScreen();
-            //todo: show auction
+
+            loadPlayerSummaryScreen();
+            playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void calculateProduction() {
+        for (Land[] landRow : map) {
+            for (Land land : landRow) {
+                int amount;
+                if (land.getOwner() != null) {
+                    if (land.getProductionType() != Mule.MuleType.NONE) {
+                        //donothing
+                    }
+                    if (land.getOwner().getInventoryAmount(Store.Item.Energy) > 0) {
+                        if (land.getProductionType() == Mule.MuleType.SMITHORE) {
+                            if (land.getType() == Land.LandType.Mountain) {
+                                amount = 2;
+                            } else {
+                                amount = 1;
+                            }
+                            land.getOwner().changeInventory(Store.Item.Smithore, amount);
+                        } else if (land.getProductionType() == Mule.MuleType.ENERGY) {
+                            if (land.getType() == Land.LandType.Plains) {
+                                amount = 2;
+                            } else {
+                                amount = 1;
+                            }
+                            land.getOwner().changeInventory(Store.Item.Energy, amount);
+                        } else if (land.getProductionType() == Mule.MuleType.FOOD) {
+                            if (land.getType() == Land.LandType.Water) {
+                                amount = 2;
+                            } else {
+                                amount = 1;
+                            }
+                            land.getOwner().changeInventory(Store.Item.Food, amount);
+                        }
+                        land.getOwner().changeInventory(Store.Item.Energy, -1);
+                    }
+
+                }
+            }
+
         }
     }
 }
