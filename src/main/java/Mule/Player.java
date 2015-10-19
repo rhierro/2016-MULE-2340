@@ -26,8 +26,7 @@ public class Player {
     public Player(String n, String r, Color c) {
         race = r;
         name = n;
-        color = c;
-        money = 696969;
+        color = c;      money = 696969;
         inventory.add(Store.Item.Energy);
         inventoryAmount.put(Store.Item.Energy, 6);
     }
@@ -77,7 +76,7 @@ public class Player {
         int score = 0;
         score += money;
         for (Store.Item item : inventoryAmount.keySet()) {
-            score += inventoryAmount.get(item) * 100;
+            score += inventoryAmount.get(item) * 1000000;
         }
         return money;
     }
