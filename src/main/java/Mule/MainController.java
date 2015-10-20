@@ -250,6 +250,7 @@ public class MainController {
     public void initiateRound() throws Exception{
         loadLandBuyingMapScreen();
         store.generatePrices();
+        playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
     }
 
     public void startTurn() {
@@ -333,7 +334,7 @@ public class MainController {
             landBuyingMapLoader = new FXMLLoader(getClass().getResource("LandBuyingMap.fxml"));
 
             loadPlayerSummaryScreen();
-            playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
