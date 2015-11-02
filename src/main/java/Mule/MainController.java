@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.*;
 
 /**
  * Created by Henry on 9/14/2015.
@@ -34,6 +36,7 @@ public class MainController {
     private Timer timer;
     private Timer tickTimer;
     private int roundTime = ROUNDTIME; // in seconds
+    private RandomEvent randomEvent;
 
     FXMLLoader configLoader;
     FXMLLoader playerConfigLoader;
@@ -84,6 +87,8 @@ public class MainController {
             townMapLoader = new FXMLLoader(getClass().getResource("TownMap.fxml"));
             storeLoader = new FXMLLoader(getClass().getResource("Store.fxml"));
             playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
+            randomEvent = new RandomEvent();
+            randomEvent.setMainController(this);
         } catch (Exception e) {
 
         }
@@ -250,10 +255,13 @@ public class MainController {
     public void initiateRound() throws Exception{
         loadLandBuyingMapScreen();
         store.generatePrices();
+        playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
+
     }
 
     public void startTurn() {
         try {
+
             roundTime = ROUNDTIME; //+ (4 - currentPlayerNum) * 2;
             currentPlayer = players.poll();
             tempPlayers.add(currentPlayer);
@@ -261,6 +269,13 @@ public class MainController {
             loadMainMapScreen();
             loadStoreScreen();
             switchtoMainMapScreen();
+            new Runnable() {
+                public void run() {
+                    randomEvent.doRandomEvent();
+                }
+            }.run();
+
+
 
             timer = new Timer();
             // timer task for timing round
@@ -311,7 +326,7 @@ public class MainController {
             mainMapLoader =  new FXMLLoader(getClass().getResource("MainMap.fxml"));
             townMapLoader = new FXMLLoader(getClass().getResource("TownMap.fxml"));
             storeLoader = new FXMLLoader(getClass().getResource("Store.fxml"));
-            if (currentPlayerNum < 4) { //player nums are (1-4)
+            if (currentPlayerNum < 4) { //player nums are (0-3)
                 startTurn();
             } else {
                 endRound();
@@ -333,7 +348,6 @@ public class MainController {
             landBuyingMapLoader = new FXMLLoader(getClass().getResource("LandBuyingMap.fxml"));
 
             loadPlayerSummaryScreen();
-            playerSummaryLoader = new FXMLLoader(getClass().getResource("PlayerSummary.fxml"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -377,5 +391,38 @@ public class MainController {
             }
 
         }
+    }
+
+    private void saveGame() throws Exception{
+        FileOutputStream saveFile=new FileOutputStream("SaveObj.sav");
+        ObjectOutputStream save = new ObjectOutputStream(saveFile);
+        save.writeObject(players);
+        save.writeObject(map);
+        save.writeObject(mapNum);
+        save.writeObject(store);
+        save.writeObject(difficulty);
+        save.writeObject(numberOfPlayers);
+        save.writeObject(currentPlayerNum);
+        save.writeObject(currentRound);
+        save.writeObject(currentPlayer);
+        save.close();
+
+    }
+
+    private void loadGame() throws Exception {
+        FileInputStream saveFile = new FileInputStream("SaveObj.sav");
+        ObjectInputStream save = new ObjectInputStream(saveFile);
+        players = (PriorityQueue<Player>) save.readObject();
+        map = (ObservableList<Land[]>) save.readObject();
+        mapNum = (int) save.readObject();
+        store = (Store) save.readObject();
+        difficulty = (int) save.readObject();
+        numberOfPlayers = (int) save.readObject();
+        currentPlayerNum = (int) save.readObject();
+        currentRound = (int) save.readObject();
+        currentPlayer = (Player) save.readObject();
+        save.close();
+
+
     }
 }

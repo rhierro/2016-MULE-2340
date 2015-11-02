@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Henry on 9/9/2015.
  */
-public class Player {
+public class Player implements Serializable{
     private String race;
     private String name;
     private Color color;

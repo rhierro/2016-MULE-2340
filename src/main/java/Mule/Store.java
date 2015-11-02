@@ -4,12 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * Created by Henry on 9/30/2015.
  */
-public class Store {
+public class Store implements Serializable{
     public enum Item {
         Smithore,
         Energy,
