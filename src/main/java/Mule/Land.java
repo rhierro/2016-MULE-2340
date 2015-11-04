@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Henry on 9/18/2015.
  */
-public class Land implements Serializable{
+public class Land implements Serializable {
     public enum LandType {
         Plains,
         Water,

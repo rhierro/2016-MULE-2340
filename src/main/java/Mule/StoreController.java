@@ -46,20 +46,28 @@ public class StoreController {
 
     private void initialize() {
 
-        playerMoney_label.setText(String.format("%d", currentPlayer.getMoney()));
+        playerMoney_label.setText(String.format("%d",
+                currentPlayer.getMoney()));
 
         store_listView.setItems(currentStore.getInventory());
-        store_listView.setCellFactory(new Callback<ListView<Store.Item>, ListCell<Store.Item>>() {
+        store_listView.setCellFactory(new Callback<ListView<Store.Item>,
+                ListCell<Store.Item>>() {
             @Override
             public ListCell<Store.Item> call(ListView<Store.Item> param) {
                 ListCell<Store.Item> cell = new ListCell<Store.Item>() {
                     @Override
-                    protected void updateItem(Store.Item item, boolean empty) {
+                    protected void updateItem(Store.Item item,
+                                              boolean empty) {
                         super.updateItem(item, empty);
                         if (item != null) {
-                            setText(item + generateSpaces(12, item.toString().length())
-                                            + "Amount:" + currentStore.getInventoryAmount(item)
-                                            + "     " + "Price:" + currentStore.getPrice(item)
+                            setText(item + generateSpaces(12,
+                                            item.toString().length())
+                                            + "Amount:"
+                                            + currentStore.
+                                            getInventoryAmount(item)
+                                            + "     "
+                                            + "Price:"
+                                            + currentStore.getPrice(item)
                             );
                         }
                     }
@@ -71,36 +79,47 @@ public class StoreController {
 
 
         player_listView.setItems(currentPlayer.getInventory());
-        player_listView.setCellFactory(new Callback<ListView<Store.Item>, ListCell<Store.Item>>() {
-            @Override
-            public ListCell<Store.Item> call(ListView<Store.Item> param) {
-                ListCell<Store.Item> cell = new ListCell<Store.Item>() {
+        player_listView.
+                setCellFactory(new Callback<ListView<Store.Item>,
+                        ListCell<Store.Item>>() {
                     @Override
-                    protected void updateItem(Store.Item item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item != null) {
-                            setText(item + generateSpaces(12, item.toString().length())
-                                            + "Amount:" + currentPlayer.getInventoryAmount(item)
-                                            + "     " + "Price:" + currentStore.getPrice(item)
-                            );
-                        }
+            public ListCell<Store.Item> call(ListView<Store.Item> param) {
+                        ListCell<Store.Item> cell = new ListCell<Store.Item>() {
+                            @Override
+                    protected void updateItem(Store.Item item,
+                                boolean empty) {
+                                super.updateItem(item, empty);
+                                if (item != null) {
+                                    setText(item
+                                        + generateSpaces(12, item.toString().
+                                        length())
+                                        + "Amount:"
+                                        + currentPlayer.
+                                        getInventoryAmount(item)
+                                        + "     "
+                                        + "Price:"
+                                        + currentStore.getPrice(item)
+                                    );
+                                }
+                            }
+                        };
+                        return cell;
                     }
-                };
-                return cell;
-            }
-        });
+                });
 
     }
 
     @FXML
     private void toStorePressed(ActionEvent event) {
-        Store.Item item = player_listView.getSelectionModel().getSelectedItem();
+        Store.Item item = player_listView.getSelectionModel().
+                getSelectedItem();
         if (item != null) {
             if (currentPlayer.getInventoryAmount(item) > 0) {
                 currentPlayer.adjustMoney(currentStore.getPrice(item));
                 currentPlayer.changeInventory(item, -1);
                 currentStore.changeInventory(item, 1);
-                playerMoney_label.setText(String.format("%d", currentPlayer.getMoney()));
+                playerMoney_label.setText(String.format("%d",
+                        currentPlayer.getMoney()));
                 refreshLists();
             }
         }
@@ -109,14 +128,16 @@ public class StoreController {
 
     @FXML
     private void toPlayerPressed(ActionEvent event) {
-        Store.Item item = store_listView.getSelectionModel().getSelectedItem();
+        Store.Item item = store_listView.getSelectionModel().
+                getSelectedItem();
         if (item != null) {
             if (currentPlayer.getMoney() > currentStore.getPrice(item)) {
                 if (currentStore.getInventoryAmount(item) > 0) {
                     currentPlayer.adjustMoney(-currentStore.getPrice(item));
                     currentPlayer.changeInventory(item, 1);
                     currentStore.changeInventory(item, -1);
-                    playerMoney_label.setText(String.format("%d", currentPlayer.getMoney()));
+                    playerMoney_label.setText(String.format("%d",
+                            currentPlayer.getMoney()));
                     refreshLists();
                 }
             }
@@ -143,5 +164,4 @@ public class StoreController {
         this.currentPlayer = mc.getCurrentPlayer();
         initialize();
     }
-
 }

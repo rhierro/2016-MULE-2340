@@ -6,10 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+//import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -18,8 +18,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.util.*;
+//import java.awt.*;
+//import java.util.*;
+import java.util.Random;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlayerConfigurationScreenController {
@@ -93,13 +95,14 @@ public class PlayerConfigurationScreenController {
         if (playersAdded == mc.getNumberOfPlayers()) {
             if (playersAdded < 4) {
                 // generate computer player
-                for (int i = 0; i < 4-playersAdded; i++) {
+                for (int i = 0; i < 4 - playersAdded; i++) {
                     Random rand = new Random();
                     double r = rand.nextDouble() % 255;
                     double g = rand.nextDouble() % 255;
                     double b = rand.nextDouble() % 255;
                     Color color = new Color(r, g, b, 1);
-                    Player c = new Player(compNames.get(i), races.get(i), color);
+                    Player c = new Player(compNames.get(i), races.get(i),
+                            color);
                     mc.addPlayer(c);
                 }
             }
@@ -108,15 +111,11 @@ public class PlayerConfigurationScreenController {
                     .getWindow();
             mc.loadPlayerOverviewScreen();
 
-
-
         } else {
-            playerNum_label.setText(String.format("Player %d", playersAdded + 1));
+            playerNum_label.setText(String.format("Player %d",
+                    playersAdded + 1));
 
         }
-
-
-
     }
     @FXML
     private void inputboxEntered(KeyEvent event) {

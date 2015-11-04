@@ -5,29 +5,32 @@ import javafx.collections.ObservableMap;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
 
 /**
  * Created by Henry on 9/9/2015.
  */
-public class Player implements Serializable{
+public class Player implements Serializable {
     private String race;
     private String name;
     private Color color;
     private int money;
     private Mule mule;
-    private ObservableMap<Store.Item, Integer> inventoryAmount = FXCollections.observableHashMap();
-    private ObservableList<Store.Item> inventory = FXCollections.observableArrayList();
+    private ObservableMap<Store.Item, Integer> inventoryAmount
+            = FXCollections.observableHashMap();
+    private ObservableList<Store.Item> inventory = FXCollections.
+            observableArrayList();
 
-    boolean computer = false;
+    private boolean computer = false;
 
 
     public Player(String n, String r, Color c) {
         race = r;
         name = n;
-        color = c;      money = 696969;
+        color = c;
+        money = 696969;
         inventory.add(Store.Item.Energy);
         inventoryAmount.put(Store.Item.Energy, 6);
     }
@@ -88,7 +91,7 @@ public class Player implements Serializable{
     }
 
     public void setMule(Mule mule) {
-    this.mule = mule;
+        this.mule = mule;
     }
 
     public void removeMule() {
