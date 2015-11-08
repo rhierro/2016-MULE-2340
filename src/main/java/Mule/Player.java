@@ -117,7 +117,13 @@ public class Player implements Serializable{
         if (inventoryAmount.get(item) != null) {
             amount = inventoryAmount.get(item);
         }
-        inventoryAmount.put(item, amount + adjustment);
+        
+        int newAmount = amount + adjustment;
+        if (newAmount < 0) {
+            newAmount = 0;
+        }
+
+        inventoryAmount.put(item, newAmount);
 
         if (!inventory.contains(item)) {
             inventory.add(item);
