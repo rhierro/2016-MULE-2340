@@ -79,7 +79,7 @@ public class Player implements Serializable{
         for (Store.Item item : inventoryAmount.keySet()) {
             score += inventoryAmount.get(item) * 1000000;
         }
-        return money;
+        return score;
     }
 
     //returns mule currently in player's possession
