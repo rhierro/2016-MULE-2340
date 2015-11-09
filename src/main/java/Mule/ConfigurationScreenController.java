@@ -129,7 +129,7 @@ public class ConfigurationScreenController {
         mc.loadPlayerConfigurationScreen();
     }
 
-    private ObservableList<Land[]> setupMap(int map) {
+    private List<Land[]> setupMap (int map ) {
         Land[][] landArray = new Land[5][9];
         List<int[]> mountainArray = new ArrayList<int[]>();
         List<int[]> waterArray = new ArrayList<int[]>();
@@ -157,11 +157,26 @@ public class ConfigurationScreenController {
                 landArray[mountain[0]][mountain[1]].
                         setType(Land.LandType.Mountain);
             }
+
             for (int[] water : waterArray) {
                 landArray[water[0]][water[1]].setType(Land.LandType.Water);
             }
         }
-        return FXCollections.observableArrayList(landArray);
+
+        ArrayList<Land[]> list = new ArrayList<>();
+        for (int i = 0; i < landArray.length; i++) {
+            list.add(landArray[i]);
+        }
+        return list;
+
+
+
+
+    }
+
+    @FXML
+    private void loadGamePressed() {
+        mc.loadGame();
     }
 
     public void setMainController(MainController mc) {

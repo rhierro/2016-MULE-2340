@@ -1,5 +1,6 @@
 package Mule;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public class StoreController {
         playerMoney_label.setText(String.format("%d",
                 currentPlayer.getMoney()));
 
-        store_listView.setItems(currentStore.getInventory());
+        store_listView.setItems(FXCollections.observableArrayList(currentStore.getInventory()));
         store_listView.setCellFactory(new Callback<ListView<Store.Item>,
                 ListCell<Store.Item>>() {
             @Override
@@ -78,7 +79,7 @@ public class StoreController {
 
 
 
-        player_listView.setItems(currentPlayer.getInventory());
+        player_listView.setItems(FXCollections.observableArrayList((currentPlayer.getInventory())));
         player_listView.
                 setCellFactory(new Callback<ListView<Store.Item>,
                         ListCell<Store.Item>>() {

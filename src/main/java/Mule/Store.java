@@ -5,12 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
 import java.io.Serializable;
-//import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Henry on 9/30/2015.
  */
-public class Store implements Serializable {
+public class Store implements Serializable{
     public enum Item {
         Smithore,
         Energy,
@@ -18,10 +21,8 @@ public class Store implements Serializable {
     }
 
 
-    private ObservableList<Item> inventory = FXCollections.
-            observableArrayList();
-    private ObservableMap<Item, Integer> inventoryAmount
-            = FXCollections.observableHashMap();
+    private List<Item> inventory = new ArrayList<>();
+    private Map<Item, Integer> inventoryAmount = new HashMap<>();
     private int MulePrice;
     private int smithoreMulePrice;
     private int energyMulePrice;
@@ -78,7 +79,7 @@ public class Store implements Serializable {
         }
     }
 
-    public ObservableList<Store.Item> getInventory() {
+    public List<Store.Item> getInventory() {
         return inventory;
     }
 

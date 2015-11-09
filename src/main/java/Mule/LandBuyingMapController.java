@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -23,7 +24,7 @@ public class LandBuyingMapController {
     private Land[][] landArray = new Land[5][9];
     private int currentPlayerNum = 0;
     private PriorityQueue<Player> playerArray;
-    private ObservableList<Land[]> landList;
+    private List<Land[]> landList;
     private int currentRound;
     private Player currentPlayer;
 

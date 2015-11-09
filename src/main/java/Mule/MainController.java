@@ -5,25 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.layout.Priority;
+import javafx.scene.image.PixelReader;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Timer;
-import java.util.PriorityQueue;
-import java.util.Comparator;
-import java.util.TimerTask;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by Henry on 9/14/2015.
  */
-public class MainController {
-    private PriorityQueue<Player> players;
+public class MainController implements Serializable {
+    private PriorityQueue<Player> players ;
     private PriorityQueue<Player> tempPlayers;
-    private ObservableList<Land[]>  map = FXCollections.observableArrayList();
+    private List<Land[]>  map = new ArrayList<>();
+
     private int mapNum;
 
     private Stage stage;
@@ -56,6 +52,8 @@ public class MainController {
     Scene mainMapScene;
     Scene townMapScene;
     Scene storeScene;
+
+
 
     public MainController() {
         try {
@@ -123,11 +121,11 @@ public class MainController {
         return difficulty;
     }
 
-    public void setMap(ObservableList<Land[]> map) {
+    public void setMap(List<Land[]> map) {
         this.map = map;
     }
 
-    public ObservableList<Land[]> getMap() {
+    public List<Land[]> getMap() {
         return map;
     }
 
@@ -314,6 +312,7 @@ public class MainController {
 
         } catch (Exception e) {
             System.out.println("exception at start turn");
+            e.printStackTrace();
             //System.out.println(e.getMessage());
         }
     }
@@ -408,44 +407,84 @@ public class MainController {
                                         changeInventory(Store.Item.Food,
                                                 amount);
                             }
-                            land.getOwner().
-                                    changeInventory(Store.Item.Energy, -1);
+                            land.getOwner().changeInventory(Store.Item.Smithore, amount);
+                        } else if (land.getProductionType() == Mule.MuleType.ENERGY) {
+                            if (land.getType() == Land.LandType.Plains) {
+                                amount = 2;
+                            } else {
+                                amount = 1;
+                            }
+                            land.getOwner().changeInventory(Store.Item.Energy, amount);
+                        } else if (land.getProductionType() == Mule.MuleType.FOOD) {
+                            if (land.getType() == Land.LandType.Water) {
+                                amount = 2;
+                            } else {
+                                amount = 1;
+                            }
+                            land.getOwner().changeInventory(Store.Item.Food, amount);
                         }
+                        land.getOwner().changeInventory(Store.Item.Energy, -1);
                     }
+
                 }
             }
-
         }
     }
 
-    private void saveGame() throws Exception {
-        FileOutputStream saveFile = new FileOutputStream("SaveObj.sav");
-        ObjectOutputStream save = new ObjectOutputStream(saveFile);
-        save.writeObject(players);
-        save.writeObject(map);
-        save.writeObject(mapNum);
-        save.writeObject(store);
-        save.writeObject(difficulty);
-        save.writeObject(numberOfPlayers);
-        save.writeObject(currentPlayerNum);
-        save.writeObject(currentRound);
-        save.writeObject(currentPlayer);
-        save.close();
+    public void saveGame() {
+        try {
+            FileOutputStream saveFile = new FileOutputStream("SaveObj.sav");
+            ObjectOutputStream save = new ObjectOutputStream(saveFile);
+            save.writeObject(players.size());
+            for (Player p : players) {
+                save.writeObject(p);
+            }
+            save.writeObject(currentPlayer);
+            save.writeObject(tempPlayers.size());
+            for (Player tp: tempPlayers) {
+                save.writeObject(tp);
+            }
+            save.writeObject(map);
+            save.writeObject(mapNum);
+            save.writeObject(store);
+            save.writeObject(difficulty);
+            save.writeObject(numberOfPlayers);
+            save.writeObject(currentPlayerNum);
+            save.writeObject(currentRound);
+            save.writeObject(currentPlayer);
+            save.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private void loadGame() throws Exception {
-        FileInputStream saveFile = new FileInputStream("SaveObj.sav");
-        ObjectInputStream save = new ObjectInputStream(saveFile);
-        players = (PriorityQueue<Player>) save.readObject();
-        map = (ObservableList<Land[]>) save.readObject();
-        mapNum = (int) save.readObject();
-        store = (Store) save.readObject();
-        difficulty = (int) save.readObject();
-        numberOfPlayers = (int) save.readObject();
-        currentPlayerNum = (int) save.readObject();
-        currentRound = (int) save.readObject();
-        currentPlayer = (Player) save.readObject();
-        save.close();
+    public void loadGame(){
+        try {
+            FileInputStream saveFile = new FileInputStream("SaveObj.sav");
+            ObjectInputStream save = new ObjectInputStream(saveFile);
+            int p = (int) save.readObject();
+            for (int i = 0; i < p; i++) {
+                players.add((Player) save.readObject());
+            }
+            players.add((Player) save.readObject());
+            int tp = (int) save.readObject();
+            for (int i = 0; i < tp; i++) {
+                tempPlayers.add((Player) save.readObject());
+            }
+            map = (List<Land[]>) save.readObject();
+            mapNum = (int) save.readObject();
+            store = (Store) save.readObject();
+            difficulty = (int) save.readObject();
+            numberOfPlayers = (int) save.readObject();
+            currentPlayerNum = (int) save.readObject();
+            currentRound = (int) save.readObject();
+            currentPlayer = (Player) save.readObject();
+            save.close();
+            startTurn();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

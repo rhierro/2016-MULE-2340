@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Timer;
 
@@ -23,10 +24,12 @@ import java.util.Timer;
 public class MainMapController {
 
     private MainController mc;
-    private ObservableList<Land[]> landList;
+    private PriorityQueue<Player> playerArray;
+    private List<Land[]> landList;
+    private int currentPlayerNum;
     private Player currentPlayer;
     private Timer timer;
-    private ArrayList<Button> buttonList = new ArrayList<Button>();
+    private ArrayList<Button> buttonList = new ArrayList<>();
 
 
     @FXML
@@ -92,6 +95,7 @@ public class MainMapController {
                         @Override
                         public void handle(ActionEvent event) {
                             townButtonPressed(event);
+                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
                         }
                     });
                 } else {
@@ -99,6 +103,7 @@ public class MainMapController {
                         @Override
                         public void handle(ActionEvent event) {
                             buttonPressed(event);
+                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
                         }
                     });
                 }
@@ -132,6 +137,7 @@ public class MainMapController {
 
     public void updateTime() {
         time.setText(String.format("%d", mc.getRoundTime()));
+
     }
 
     private void townButtonPressed(ActionEvent event) {
@@ -140,6 +146,7 @@ public class MainMapController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
     }
 
     private void buttonPressed(ActionEvent event) {

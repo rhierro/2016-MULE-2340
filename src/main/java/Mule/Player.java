@@ -5,9 +5,10 @@ import javafx.collections.ObservableMap;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Henry on 9/9/2015.
@@ -15,13 +16,13 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private String race;
     private String name;
-    private Color color;
+    private double r;
+    private double g;
+    private double b;
     private int money;
     private Mule mule;
-    private ObservableMap<Store.Item, Integer> inventoryAmount
-            = FXCollections.observableHashMap();
-    private ObservableList<Store.Item> inventory = FXCollections.
-            observableArrayList();
+    private ObservableMap<Store.Item, Integer> inventoryAmount = FXCollections.observableHashMap();
+    private ObservableList<Store.Item> inventory = FXCollections.observableArrayList();
 
     private boolean computer = false;
 
@@ -29,7 +30,11 @@ public class Player implements Serializable {
     public Player(String n, String r, Color c) {
         race = r;
         name = n;
-        color = c;
+        this.r =  (c.getRed() );
+        this.g =  (c.getGreen());
+        this.b =  (c.getBlue() );
+
+
         money = 696969;
         inventory.add(Store.Item.Energy);
         inventoryAmount.put(Store.Item.Energy, 6);
@@ -57,11 +62,13 @@ public class Player implements Serializable {
     }
 
     public Color getColor() {
-        return color;
+        return new Color(r, g, b, 1);
     }
 
     public void setColor(Color color) {
-        this.color = color;
+        this.r  = color.getRed();
+        this.g = color.getGreen();
+        this.b = color.getBlue();
     }
 
     public boolean isComputer() {
@@ -102,7 +109,7 @@ public class Player implements Serializable {
         return (mule != null);
     }
 
-    public ObservableList<Store.Item> getInventory() {
+    public List<Store.Item> getInventory() {
         return inventory;
     }
 
@@ -112,6 +119,13 @@ public class Player implements Serializable {
         } else {
             return 0;
         }
+    }
+
+    public void setInventoryAmount(Store.Item item, int i) {
+        if (inventoryAmount.get(item) != null) {
+            inventoryAmount.put(item, i);
+        }
+
     }
 
     public void changeInventory(Store.Item item, int adjustment) {

@@ -144,6 +144,11 @@ public class TownMapController {
         }
     }
 
+    @FXML
+    private void saveGamePressed() {
+        mc.saveGame();
+    }
+
     public void updateTime() {
         time.setText(String.format("%d", mc.getRoundTime()));
     }
