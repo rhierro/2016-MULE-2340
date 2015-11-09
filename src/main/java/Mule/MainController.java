@@ -367,13 +367,12 @@ public class MainController implements Serializable {
         }
     }
 
-    private void calculateProduction() {
+    public void calculateProduction() {
         for (Land[] landRow : map) {
             for (Land land : landRow) {
-                int amount = 0;
+                int amount;
                 if (land.getOwner() != null) {
                     if (land.getProductionType() != Mule.MuleType.NONE) {
-                        //donothing
                         if (land.getOwner().
                                 getInventoryAmount(Store.Item.Energy) > 0) {
                             if (land.getProductionType()
@@ -407,25 +406,9 @@ public class MainController implements Serializable {
                                         changeInventory(Store.Item.Food,
                                                 amount);
                             }
-                            land.getOwner().changeInventory(Store.Item.Smithore, amount);
-                        } else if (land.getProductionType() == Mule.MuleType.ENERGY) {
-                            if (land.getType() == Land.LandType.Plains) {
-                                amount = 2;
-                            } else {
-                                amount = 1;
-                            }
-                            land.getOwner().changeInventory(Store.Item.Energy, amount);
-                        } else if (land.getProductionType() == Mule.MuleType.FOOD) {
-                            if (land.getType() == Land.LandType.Water) {
-                                amount = 2;
-                            } else {
-                                amount = 1;
-                            }
-                            land.getOwner().changeInventory(Store.Item.Food, amount);
+                            land.getOwner().changeInventory(Store.Item.Energy, -1);
                         }
-                        land.getOwner().changeInventory(Store.Item.Energy, -1);
                     }
-
                 }
             }
         }
