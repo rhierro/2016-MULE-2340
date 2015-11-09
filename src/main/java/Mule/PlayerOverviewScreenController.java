@@ -7,14 +7,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Node;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -47,8 +47,8 @@ public class PlayerOverviewScreenController {
 
     public void generateOverview() {
         players = new ArrayList<Player>(mc.getPlayers());
-        for (int i = 0; i < vboxes.size() ; i++) {
-            Label player = new Label(String.format("Player %d", i+1));
+        for (int i = 0; i < vboxes.size(); i++) {
+            Label player = new Label(String.format("Player %d", i + 1));
             vboxes.get(i).getChildren().add(player);
             Label name = new Label("Name: " + players.get(i).getName());
             vboxes.get(i).getChildren().add(name);
@@ -57,23 +57,24 @@ public class PlayerOverviewScreenController {
             int red = (int) (players.get(i).getColor().getRed() * 255);
             int  green = (int) (players.get(i).getColor().getGreen() * 255);
             int blue = (int) (players.get(i).getColor().getBlue() * 255);
-            vboxes.get(i).setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                    "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
+            vboxes.get(i).setStyle(String.format("-fx-border-color: %s; "
+                            + "-fx-border-width: 10px; "
+                            + "-fx-background-color: rgba(%s, %s, %s, 0.5);",
+                    color, red, green, blue));
 
         }
     }
 
     @FXML
-    private void OKPressed(ActionEvent event) throws Exception{
+    private void OKPressed(ActionEvent event) throws Exception {
         mc.initiateRound();
     }
 
-    public static String toRGBCode( Color color )
-    {
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+    public static String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     public void setMainController(MainController mc) {

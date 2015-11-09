@@ -3,18 +3,18 @@ package Mule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
+//import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+//import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import sun.applet.Main;
+//import javafx.scene.Parent;
+//import sun.applet.Main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 
 public class ConfigurationScreenController {
@@ -118,7 +118,7 @@ public class ConfigurationScreenController {
     }
 
     @FXML
-    private void next(ActionEvent event) throws Exception{
+    private void next(ActionEvent event) throws Exception {
         mc.setDifficulty(difficulty);
         mc.setMap(setupMap(map));
         mc.setNumberOfPlayers(players);
@@ -127,27 +127,24 @@ public class ConfigurationScreenController {
         Stage stageN = (Stage) ((Node) event.getSource()).getScene()
                 .getWindow();
         mc.loadPlayerConfigurationScreen();
-
-
-
-
     }
 
-    private ObservableList<Land[]> setupMap (int map ) {
+    private ObservableList<Land[]> setupMap(int map) {
         Land[][] landArray = new Land[5][9];
-        List<int[]> mountainArray = new ArrayList<>();
-        List<int[]> waterArray = new ArrayList<>();
+        List<int[]> mountainArray = new ArrayList<int[]>();
+        List<int[]> waterArray = new ArrayList<int[]>();
         for (int i = 0; i < landArray.length; i++) {
             for (int j = 0; j < landArray[0].length; j++) {
                 landArray[i][j] = new Land();
             }
         }
         if (map == 0) {
-            int[][] waters = {{0, 2}, {1, 3}, {1, 4}, {1, 6}, {1, 7}, {1, 8}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 6}, {1, 7}, {1, 8},
-                    {3, 4}, {3, 6}, {4, 4}, {4, 5}, {4, 6}};
-            int[][] mountains = {{0, 3}, {0, 4}, {0, 6}, {0, 7}, {1, 0}, {1, 1}, {1, 2}, {1, 5}, {2, 7}, {2, 8}, {3, 1}, {3, 2},
-                    {3, 3}, {3, 7}, {3, 8}, {4, 0}, {4, 1}, {4, 2}, {4, 8}};
-
+            int[][] waters = {{0, 2}, {1, 3}, {1, 4}, {1, 6}, {1, 7}, {1, 8},
+                {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 6}, {1, 7}, {1, 8},
+                {3, 4}, {3, 6}, {4, 4}, {4, 5}, {4, 6}};
+            int[][] mountains = {{0, 3}, {0, 4}, {0, 6}, {0, 7}, {1, 0},
+                {1, 1}, {1, 2}, {1, 5}, {2, 7}, {2, 8}, {3, 1}, {3, 2},
+                {3, 3}, {3, 7}, {3, 8}, {4, 0}, {4, 1}, {4, 2}, {4, 8}};
             for (int[] mtn : mountains) {
                 mountainArray.add(mtn);
             }
@@ -157,27 +154,17 @@ public class ConfigurationScreenController {
         }
         if ((waterArray.size() != 0) && (mountainArray.size() != 0)) {
             for (int[] mountain : mountainArray) {
-
-                landArray[mountain[0]][mountain[1]].setType(Land.LandType.Mountain);
+                landArray[mountain[0]][mountain[1]].
+                        setType(Land.LandType.Mountain);
             }
-
             for (int[] water : waterArray) {
                 landArray[water[0]][water[1]].setType(Land.LandType.Water);
             }
         }
-
         return FXCollections.observableArrayList(landArray);
-
-
-
-
-
     }
 
     public void setMainController(MainController mc) {
         this.mc = mc;
     }
-
-
 }
-

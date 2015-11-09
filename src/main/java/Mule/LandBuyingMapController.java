@@ -38,7 +38,6 @@ public class LandBuyingMapController {
     }
 
     private Text info;
-    private TextFlow infoFlow;
 
     @FXML
     public void generateButtons() throws Exception {
@@ -48,13 +47,18 @@ public class LandBuyingMapController {
         currentPlayer = playerArray.poll();
         int mapNum = mc.getMapNum();
         if (mapNum == 0) {
-            String image = getClass().getResource("resources/MuleMap0-Grid.jpg").toExternalForm();
-            map_pane.setStyle(String.format("-fx-background-image: url(%s);", image));
+            String image = getClass().
+                    getResource("resources/MuleMap0-Grid.jpg").
+                    toExternalForm();
+            map_pane.setStyle(String.format("-fx-background-image: url(%s);",
+                    image));
         } else if (mapNum == 1) {
-            String image = getClass().getResource("resources/Map1.jpg").toExternalForm();
-            map_pane.setStyle(String.format("-fx-background-image: url(%s); -fx-background-size: stretch, auto;" +
-                    "    -fx-background-position: right bottom;" +
-                    "    -fx-background-repeat: stretch stretch;", image));
+            String image = getClass().getResource("resources/Map1.jpg").
+                    toExternalForm();
+            map_pane.setStyle(String.format("-fx-background-image: url(%s);"
+                    + "-fx-background-size: stretch, auto;"
+                    + "-fx-background-position: right bottom;"
+                    + "-fx-background-repeat: stretch stretch;", image));
         }
 
         for (int i = 0; i < 5; i++) { // column
@@ -65,24 +69,35 @@ public class LandBuyingMapController {
                 landButton.setLayoutX(1 + (j * (120)));
                 landButton.setLayoutY(1 + (i * (144)));
                 int tempX = (int) landButton.getLayoutX();
-                int tempY = (int) landButton.getLayoutY();//
+                int tempY = (int) landButton.getLayoutY();
                 landButton.setStyle("-fx-background-color: transparent");
                 if (landList.get(i)[j].getOwner() != null) {
-                    int red = (int) (landList.get(i)[j].getOwner().getColor().getRed() * 255);
-                    int green = (int) (landList.get(i)[j].getOwner().getColor().getGreen() * 255);
-                    int blue = (int) (landList.get(i)[j].getOwner().getColor().getBlue() * 255);
-                    String color = toRGBCode(landList.get(i)[j].getOwner().getColor());
-                    landButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                            "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
+                    int red = (int) (landList.get(i)[j].getOwner().getColor().
+                            getRed() * 255);
+                    int green = (int) (landList.get(i)[j].getOwner().
+                            getColor().getGreen() * 255);
+                    int blue = (int) (landList.get(i)[j].getOwner().getColor().
+                            getBlue() * 255);
+                    String color = toRGBCode(landList.get(i)[j].getOwner().
+                            getColor());
+                    landButton.setStyle(String.format("-fx-border-color: %s;"
+                            + "-fx-border-width: 10px; "
+                            + "-fx-background-color: rgba(%s, %s, %s, 0.5);",
+                            color, red, green, blue));
                 }
-                if ((i == 2) && (j == 4)) { // set middle button to be pass button
-                    landButton.setStyle("-fx-background-color: whitesmoke; -fx-border-color: black; -fx-border-width: 15px");
+                if ((i == 2) && (j == 4)) {
+                    // set middle button to be pass button
+                    landButton.setStyle("-fx-background-color: whitesmoke;"
+                            + "-fx-border-color: black;"
+                            + "-fx-border-width: 15px");
                     landButton.setText("PASS");
                     landButton.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             passButtonPressed(event);
-                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
+                            // test_label.setText(String.
+                            // format("%f, %f", landButton.getLayoutX(),
+                            // landButton.getLayoutY()));
                         }
                     });
                 } else {
@@ -90,16 +105,19 @@ public class LandBuyingMapController {
                         @Override
                         public void handle(ActionEvent event) {
                             buttonPressed(event);
-                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
+                            // test_label.setText(String.
+                            // format("%f, %f", landButton.getLayoutX(),
+                            // landButton.getLayoutY()));
                         }
                     });
 
-                    landButton.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            buttonEntered(event);
-                        }
-                    });
+                    landButton.setOnMouseEntered(
+                            new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                buttonEntered(event);
+                            }
+                        });
 
                     landButton.setOnMouseExited(new EventHandler<MouseEvent>() {
                         @Override
@@ -113,8 +131,10 @@ public class LandBuyingMapController {
         }
         Color color = currentPlayer.getColor();
         info = new Text("test");
-        info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney());
-        infoFlow = new TextFlow(info);
+        info.setText("Player " + (currentPlayerNum + 1) + "--"
+                + currentPlayer.getName() + "-- $"
+                + currentPlayer.getMoney());
+        TextFlow infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
         infoFlow.setStyle("-fx-background-color:" + toRGBCode(color));
@@ -129,12 +149,13 @@ public class LandBuyingMapController {
             } else {
                 currentPlayerNum++;
                 currentPlayer = playerArray.poll();
-                info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney());
+                info.setText("Player " + (currentPlayerNum + 1) + "--"
+                        + currentPlayer.getName() + "-- $"
+                        + currentPlayer.getMoney());
             }
 
-        }
-        catch (Exception e) {
-
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -147,16 +168,23 @@ public class LandBuyingMapController {
                 int intButtonXIndex = (int) (buttonX - 1) / 120;
                 int intButtonYIndex = (int) (buttonY - 1) / 144;
 
-                if (landList.get(intButtonYIndex)[intButtonXIndex].getOwner() == null) {
-                    landList.get(intButtonYIndex)[intButtonXIndex].setOwner(currentPlayer);
+                if (landList.get(intButtonYIndex)[intButtonXIndex].
+                        getOwner() == null) {
+                    landList.get(intButtonYIndex)[intButtonXIndex].
+                            setOwner(currentPlayer);
 
-                    test_label.setText(String.format("%d, %d", (int) buttonX, (int) buttonY));
+                    test_label.setText(String.format("%d, %d", (int) buttonX,
+                            (int) buttonY));
                     int red = (int) (currentPlayer.getColor().getRed() * 255);
-                    int green = (int) (currentPlayer.getColor().getGreen() * 255);
-                    int blue = (int) (currentPlayer.getColor().getBlue() * 255);
+                    int green = (int) (currentPlayer.getColor().
+                            getGreen() * 255);
+                    int blue = (int) (currentPlayer.getColor().
+                            getBlue() * 255);
                     String color = toRGBCode(currentPlayer.getColor());
-                    sourceButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                            "-fx-background-color: rgba(%s, %s, %s, 0.3);", color, red, green, blue));
+                    sourceButton.setStyle(String.format("-fx-border-color: %s;"
+                            + "-fx-border-width: 10px; "
+                            + "-fx-background-color: rgba(%s, %s, %s, 0.3);",
+                            color, red, green, blue));
                     sourceButton.setText(currentPlayer.getName());
                     if (currentRound > 2) {
                         currentPlayer.adjustMoney(-6969);
@@ -169,11 +197,13 @@ public class LandBuyingMapController {
                     }
 
                 }
-                info.setText("Player " + (currentPlayerNum + 1 + "--" + currentPlayer.getName() + "-- $" + currentPlayer.getMoney()));
+                info.setText("Player " + (currentPlayerNum + 1 + "--"
+                        + currentPlayer.getName() + "-- $"
+                        + currentPlayer.getMoney()));
 
             }
         } catch (Exception e) {
-            System.out.println("exception at land buying button");
+            System.out.println("Exception at land buying button.");
         }
     }
 
@@ -183,13 +213,19 @@ public class LandBuyingMapController {
         double buttonY = b.getLayoutY();
         int intButtonXIndex = (int) (buttonX - 1) / 120;
         int intButtonYIndex = (int) (buttonY - 1) / 144;
-        if (landList.get(intButtonYIndex)[intButtonXIndex].getOwner() == null) {
+        if (landList.get(intButtonYIndex)[intButtonXIndex].
+                getOwner() == null) {
             if ((currentRound == 1) || (currentRound == 2)) {
-                b.setText("$0 \n" + landList.get(intButtonYIndex)[intButtonXIndex].getType().toString());
+                b.setText("$0 \n" + landList.
+                        get(intButtonYIndex)[intButtonXIndex].getType().
+                        toString());
             } else {
-                b.setText("$6969 \n" + landList.get(intButtonYIndex)[intButtonXIndex].getType().toString());
+                b.setText("$6969 \n" + landList.
+                        get(intButtonYIndex)[intButtonXIndex].getType().
+                        toString());
             }
-            b.setStyle("-fx-border-color: grey; -fx-border-width: 10px; -fx-background-color: rgba(255,255,255, 0.3)");
+            b.setStyle("-fx-border-color: grey; -fx-border-width: 10px;"
+                    + "-fx-background-color: rgba(255,255,255, 0.3)");
         }
     }
 
@@ -206,10 +242,10 @@ public class LandBuyingMapController {
     }
 
     public static String toRGBCode(Color color) {
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     public void setMainController(MainController mc) {

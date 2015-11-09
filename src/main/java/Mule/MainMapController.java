@@ -23,12 +23,10 @@ import java.util.Timer;
 public class MainMapController {
 
     private MainController mc;
-    private PriorityQueue<Player> playerArray;
     private ObservableList<Land[]> landList;
-    private int currentPlayerNum;
     private Player currentPlayer;
     private Timer timer;
-    private ArrayList<Button> buttonList = new ArrayList<>();
+    private ArrayList<Button> buttonList = new ArrayList<Button>();
 
 
     @FXML
@@ -39,20 +37,26 @@ public class MainMapController {
     private Text time;
     private TextFlow timeFlow;
 
-    public void generateButtons() throws Exception { //basically the initiate method
-        currentPlayerNum = mc.getCurrentPlayerNumber();
+    public void generateButtons() throws Exception {
+        //basically the initiate method
+        int currentPlayerNum = mc.getCurrentPlayerNumber();
         currentPlayer = mc.getCurrentPlayer();
-        playerArray = mc.getPlayers();
+        PriorityQueue<Player> playerArray = mc.getPlayers();
         landList = mc.getMap();
         int mapNum = mc.getMapNum();
         if (mapNum == 0) {
-            String image = getClass().getResource("resources/MuleMap0-Grid.jpg").toExternalForm();
-            map_pane.setStyle(String.format("-fx-background-image: url(%s);", image));
+            String image = getClass().
+                    getResource("resources/MuleMap0-Grid.jpg").
+                    toExternalForm();
+            map_pane.setStyle(String.format("-fx-background-image: url(%s);",
+                    image));
         } else if (mapNum == 1) {
-            String image = getClass().getResource("resources/Map1.jpg").toExternalForm();
-            map_pane.setStyle(String.format("-fx-background-image: url(%s); -fx-background-size: stretch, auto;" +
-                    "    -fx-background-position: right bottom;" +
-                    "    -fx-background-repeat: stretch stretch;", image));
+            String image = getClass().getResource("resources/Map1.jpg").
+                    toExternalForm();
+            map_pane.setStyle(String.format("-fx-background-image: url(%s);"
+                    + " -fx-background-size: stretch, auto;"
+                    + " -fx-background-position: right bottom;"
+                    + " -fx-background-repeat: stretch stretch;", image));
         }
 
         for (int i = 0; i < 5; i++) { //column
@@ -63,23 +67,31 @@ public class MainMapController {
                 landButton.setLayoutX(1 + (j * (120)));
                 landButton.setLayoutY(1 + (i * (144)));
                 int tempX = (int) landButton.getLayoutX();
-                int tempY = (int) landButton.getLayoutY();//
+                int tempY = (int) landButton.getLayoutY();
                 landButton.setStyle("-fx-background-color: transparent");
                 if (landList.get(i)[j].getOwner() != null) {
-                    int red = (int) (landList.get(i)[j].getOwner().getColor().getRed() * 255);
-                    int green = (int) (landList.get(i)[j].getOwner().getColor().getGreen() * 255);
-                    int blue = (int) (landList.get(i)[j].getOwner().getColor().getBlue() * 255);
-                    String color = toRGBCode(landList.get(i)[j].getOwner().getColor());
-                    landButton.setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                            "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
+                    int red = (int) (landList.get(i)[j].getOwner().
+                            getColor().getRed() * 255);
+                    int green = (int) (landList.get(i)[j].getOwner().
+                            getColor().getGreen() * 255);
+                    int blue = (int) (landList.get(i)[j].getOwner().
+                            getColor().getBlue() * 255);
+                    String color = toRGBCode(landList.get(i)[j].
+                            getOwner().getColor());
+                    landButton.setStyle(String.format("-fx-border-color: %s; "
+                            + "-fx-border-width: 10px; "
+                            + "-fx-background-color: rgba(%s, %s, %s, 0.5);",
+                            color, red, green, blue));
                 }
-                if ((i == 2) && (j == 4)) { // set middle button to be town button
-                    landButton.setStyle("-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 25px;");
+                if ((i == 2) && (j == 4)) {
+                    // set middle button to be town button
+                    landButton.setStyle("-fx-background-color: transparent;"
+                            + "-fx-border-color: black; -fx-border-width:"
+                            + " 25px;");
                     landButton.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             townButtonPressed(event);
-                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
                         }
                     });
                 } else {
@@ -87,7 +99,6 @@ public class MainMapController {
                         @Override
                         public void handle(ActionEvent event) {
                             buttonPressed(event);
-                            //test_label.setText(String.format("%f, %f", landButton.getLayoutX(), landButton.getLayoutY()));
                         }
                     });
                 }
@@ -101,7 +112,9 @@ public class MainMapController {
         }
         Color color = currentPlayer.getColor();
         info = new Text("");
-        info.setText("Player " + (currentPlayerNum + 1) + "--" + currentPlayer.getName()  + "-- $" + (currentPlayer.getMoney()));
+        info.setText("Player " + (currentPlayerNum + 1) + "--"
+                + currentPlayer.getName()  + "-- $"
+                + (currentPlayer.getMoney()));
         infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
@@ -119,16 +132,13 @@ public class MainMapController {
 
     public void updateTime() {
         time.setText(String.format("%d", mc.getRoundTime()));
-
     }
 
-    private void townButtonPressed(ActionEvent event){
+    private void townButtonPressed(ActionEvent event) {
         try {
             mc.switchtoTownMapScreen();
-        }
-        catch (Exception e) {
-
-
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -151,7 +161,8 @@ public class MainMapController {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Mule");
                 alert.setHeaderText("Mule Ran Away");
-                alert.setContentText(String.format("Your Mule has run away! Sucks to suck."));
+                alert.setContentText(String.
+                        format("Your Mule has run away! Sucks to suck."));
                 alert.showAndWait();
             }
         }
@@ -169,13 +180,16 @@ public class MainMapController {
         Image image;
         Mule.MuleType type = land.getProductionType();
         if (type == Mule.MuleType.SMITHORE) {
-            image = new Image(getClass().getResourceAsStream("resources/SmithoreIcon.png"));
+            image = new Image(getClass().
+                    getResourceAsStream("resources/SmithoreIcon.png"));
             view.setImage(image);
         } else if (type == Mule.MuleType.FOOD) {
-            image = new Image(getClass().getResourceAsStream("resources/FoodIcon.png"));
+            image = new Image(getClass().
+                    getResourceAsStream("resources/FoodIcon.png"));
             view.setImage(image);
         } else if (type == Mule.MuleType.ENERGY) {
-            image = new Image(getClass().getResourceAsStream("resources/EnergyIcon.png"));
+            image = new Image(getClass().
+                    getResourceAsStream("resources/EnergyIcon.png"));
             view.setImage(image);
         }
         map_pane.getChildren().add(view);
@@ -187,10 +201,10 @@ public class MainMapController {
     }
 
     public static String toRGBCode(Color color) {
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     public void setMainController(MainController mc) {

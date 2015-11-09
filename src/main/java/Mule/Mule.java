@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Henry on 9/30/2015.
  */
-public class Mule implements Serializable{
+public class Mule implements Serializable {
     public enum MuleType {
         NONE,
         FOOD,

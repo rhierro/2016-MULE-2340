@@ -43,8 +43,8 @@ public class PlayerSummaryController {
 
     public void generateOverview() {
         players = new ArrayList<Player>(mc.getPlayers());
-        for (int i = 0; i < vboxes.size() ; i++) {
-            Label player = new Label(String.format("Player %d", i+1));
+        for (int i = 0; i < vboxes.size(); i++) {
+            Label player = new Label(String.format("Player %d", i + 1));
             vboxes.get(i).getChildren().add(player);
             Label name = new Label("Name: " + players.get(i).getName());
             vboxes.get(i).getChildren().add(name);
@@ -53,27 +53,32 @@ public class PlayerSummaryController {
             int red = (int) (players.get(i).getColor().getRed() * 255);
             int  green = (int) (players.get(i).getColor().getGreen() * 255);
             int blue = (int) (players.get(i).getColor().getBlue() * 255);
-            vboxes.get(i).setStyle(String.format("-fx-border-color: %s; -fx-border-width: 10px; " +
-                    "-fx-background-color: rgba(%s, %s, %s, 0.5);", color, red, green, blue));
-            Label score = new Label("Score: " + players.get(i).getScore());
-            Label energy = new Label("Energy: " + players.get(i).getInventoryAmount(Store.Item.Energy));
-            Label food = new Label("Food: " + players.get(i).getInventoryAmount(Store.Item.Food));
-            Label smithore =  new Label("Smithore: " + players.get(i).getInventoryAmount(Store.Item.Smithore));
+            vboxes.get(i).setStyle(String.format("-fx-border-color: %s; "
+                    + "-fx-border-width: 10px; "
+                    + "-fx-background-color: rgba(%s, %s, %s, 0.5);",
+                    color, red, green, blue));
+            Label score = new Label("Score: " + players.get(i).
+                    getScore());
+            Label energy = new Label("Energy: " + players.get(i).
+                    getInventoryAmount(Store.Item.Energy));
+            Label food = new Label("Food: " + players.get(i).
+                    getInventoryAmount(Store.Item.Food));
+            Label smithore =  new Label("Smithore: " + players.get(i).
+                    getInventoryAmount(Store.Item.Smithore));
             vboxes.get(i).getChildren().addAll(score, energy, food, smithore);
         }
     }
 
     @FXML
-    private void OKPressed(ActionEvent event) throws Exception{
+    private void OKPressed(ActionEvent event) throws Exception {
         mc.initiateRound();
     }
 
-    public static String toRGBCode( Color color )
-    {
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+    public static String toRGBCode(Color color) {
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
     }
 
     public void setMainController(MainController mc) {
