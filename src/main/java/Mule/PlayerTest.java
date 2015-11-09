@@ -1,10 +1,9 @@
 package Mule;
 
 import javafx.scene.paint.Color;
-import static org.junit.Assert.*;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * Created by Dana on 11/8/2015.
