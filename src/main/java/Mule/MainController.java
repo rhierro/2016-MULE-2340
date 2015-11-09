@@ -370,7 +370,7 @@ public class MainController implements Serializable {
     private void calculateProduction() {
         for (Land[] landRow : map) {
             for (Land land : landRow) {
-                int amount;
+                int amount = 0;
                 if (land.getOwner() != null) {
                     if (land.getProductionType() != Mule.MuleType.NONE) {
                         //donothing
