@@ -10,6 +10,7 @@ import java.util.*;
 
 /**
  * Created by Henry
+ * The main controller class
  */
 public class MainController implements Serializable {
     private PriorityQueue<Player> players ;
@@ -50,7 +51,9 @@ public class MainController implements Serializable {
     private Scene storeScene;
 
 
-
+    /**
+     * The Main Controller constructor
+     */
     public MainController() {
         try {
             players = new PriorityQueue<>(4, new Comparator<Player>() {
