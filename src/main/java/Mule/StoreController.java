@@ -159,6 +159,10 @@ public class StoreController {
         store_listView.setItems(storeTemp);
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
         this.currentStore = mc.getStore();

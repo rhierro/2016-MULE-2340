@@ -15,10 +15,18 @@ public class Mule implements Serializable {
 
     private MuleType type;
 
+    /**
+     * Sets the type of the mule
+     * @param type MuleType
+     */
     public void setType(MuleType type) {
         this.type = type;
     }
 
+    /**
+     * Gets the type of the mule
+     * @return MuleType
+     */
     public MuleType getType() {
         return type;
     }

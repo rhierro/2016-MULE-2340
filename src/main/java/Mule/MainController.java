@@ -1,19 +1,15 @@
 package Mule;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.PixelReader;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.*;
 
 /**
- * Created by Henry on 9/14/2015.
+ * Created by Henry
  */
 public class MainController implements Serializable {
     private PriorityQueue<Player> players ;
@@ -105,83 +101,159 @@ public class MainController implements Serializable {
     }
 
     //region Getters and Setters
+
+    /**
+     * Add a player to the game
+     * @param p Player
+     */
     public void addPlayer(Player p) {
         players.add(p);
     }
 
+    /**
+     * Delete all added players
+     */
     public void clearPlayers() {
         players.clear();
     }
 
+    /**
+     * Set difficulty of game
+     * @param difficulty difficulty level
+     */
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
+    /**
+     * Returns the difficulty of the current game
+     * @return difficutly
+     */
     public int getDifficulty() {
         return difficulty;
     }
 
+    /**
+     * Sets the map to use
+     * @param map 2x2 array of lands in map
+     */
     public void setMap(List<Land[]> map) {
         this.map = map;
     }
 
+    /**
+     * Returns the map in use
+     * @return 2x2 array of lands in map
+     */
     public List<Land[]> getMap() {
         return map;
     }
 
+    /**
+     * Sets the map to use within the predefined maps
+     * @param i number of map
+     */
     public void setMapNum(int i) {
         this.mapNum = i;
     }
 
+    /**
+     * Returns the number of the map being used
+     * @return number  of map
+     */
     public int getMapNum() {
         return mapNum;
     }
 
+    /**
+     * Sets the number of human players
+     * @param numOfPlayers number of human players
+     */
     public void setNumberOfPlayers(int numOfPlayers) {
         this.numberOfPlayers = numOfPlayers;
     }
 
+    /**
+     * Returns the number of human players
+     * @return number of human players
+     */
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
 
+    /**
+     * Returns the players and their current order
+     * @return players
+     */
     public PriorityQueue<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Sets JavaFX to use for displaying
+     * @param stage JavaFX stage
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Returns the JavaFX stage being used
+     * @return stage
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * Returns the player who is currently in turn
+     * @return current player
+     */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
+    /**
+     * Returns the current player's position relative
+     * to all players
+     * @return player's position
+     */
     public int getCurrentPlayerNumber() {
         return currentPlayerNum;
     }
 
+    /**
+     * Returns the current round number
+     * @return current round number
+     */
     public int getCurrentRound() {
         return currentRound;
     }
 
+    /**
+     * Returns the amount of time left in the round
+     * @return amount of time left in round
+     */
     public int getRoundTime() {
         return roundTime;
     }
 
+    /**
+     * Returns the store in use for the current game
+     * @return store
+     */
     public Store getStore() {
         return store;
     }
 
-    public void advancePlayer() {
-        currentPlayerNum = (currentPlayerNum + 1) % 4;
-    }
+
+
     //endregion
 
+    /**
+     * Starts the current game
+     * @throws Exception
+     */
     public void startGame() throws Exception {
         store = new Store();
         Scene scene = new Scene(configLoader.load());
@@ -191,6 +263,10 @@ public class MainController implements Serializable {
         controller.setMainController(this);
     }
 
+    /**
+     * Loads a new Player configuration screen
+     * @throws Exception
+     */
     public void loadPlayerConfigurationScreen() throws Exception {
         Scene sceneConfig = new Scene((Parent) playerConfigLoader.load());
         stage.setScene(sceneConfig);
@@ -200,6 +276,10 @@ public class MainController implements Serializable {
         controller.setMainController(this);
     }
 
+    /**
+     * Loads a new Player Overview Screen
+     * @throws Exception
+     */
     public void loadPlayerOverviewScreen() throws Exception {
         Scene sceneConfig = new Scene(playerOverviewLoader.load());
         stage.setScene(sceneConfig);
@@ -210,6 +290,10 @@ public class MainController implements Serializable {
         controller.generateOverview();
     }
 
+    /**
+     * Loads a new Land Buying Map Screen
+     * @throws Exception
+     */
     public void loadLandBuyingMapScreen() throws Exception {
         Scene sceneConfig = new Scene(landBuyingMapLoader.load());
         stage.setScene(sceneConfig);
@@ -220,6 +304,10 @@ public class MainController implements Serializable {
         controller.generateButtons();
     }
 
+    /**
+     * Loads a new main map screen
+     * @throws Exception
+     */
     public void loadMainMapScreen() throws Exception {
         mainMapScene = new Scene(mainMapLoader.load());
         mainMapController = mainMapLoader.getController();
@@ -227,12 +315,20 @@ public class MainController implements Serializable {
         mainMapController.generateButtons();
     }
 
+    /**
+     * Loads a new store screen
+     * @throws Exception
+     */
     public void loadStoreScreen() throws Exception {
         storeScene = new Scene(storeLoader.load());
         storeController = storeLoader.getController();
         storeController.setMainController(this);
     }
 
+    /**
+     * Loads a new player summary screen
+     * @throws Exception
+     */
     public void loadPlayerSummaryScreen() throws Exception {
         Scene sceneConfig = new Scene(playerSummaryLoader.load());
         stage.setScene(sceneConfig);
@@ -242,21 +338,34 @@ public class MainController implements Serializable {
         controller.setMainController(this);
     }
 
+    /**
+     * Switches to the loaded main map screen
+     */
     public void switchtoMainMapScreen() {
         stage.setScene(mainMapScene);
         stage.show();
     }
 
+    /**
+     * Switches to the loaded town map screen
+     */
     public void switchtoTownMapScreen() {
         stage.setScene(townMapScene);
         stage.show();
     }
 
+    /**
+     * Switches to the loaded store screen
+     */
     public void switchtoStoreScreen() {
         stage.setScene(storeScene);
         stage.show();
     }
 
+    /**
+     * Loads a new town map screen
+     * @throws Exception
+     */
     public void loadTownMapScreen() throws Exception {
         townMapScene = new Scene(townMapLoader.load());
         townMapController = townMapLoader.getController();
@@ -264,6 +373,10 @@ public class MainController implements Serializable {
 
     }
 
+    /**
+     * Initiates the round
+     * @throws Exception
+     */
     public void initiateRound() throws Exception {
         loadLandBuyingMapScreen();
         store.generatePrices();
@@ -272,6 +385,10 @@ public class MainController implements Serializable {
 
     }
 
+    /**
+     * Starts a player's turn
+     * Starts timer for current turn
+     */
     public void startTurn() {
         try {
 
@@ -329,6 +446,9 @@ public class MainController implements Serializable {
     }
 
 
+    /**
+     * End's the current player's turn
+     */
     public void endTurn() {
         try {
 
@@ -351,6 +471,9 @@ public class MainController implements Serializable {
         }
     }
 
+    /**
+     * Ends the current round
+     */
     public void endRound() {
         try {
             calculateProduction();
@@ -367,6 +490,10 @@ public class MainController implements Serializable {
         }
     }
 
+    /**
+     * Calculates the production of the lands in
+     * its current status
+     */
     public void calculateProduction() {
         for (Land[] landRow : map) {
             for (Land land : landRow) {
@@ -414,6 +541,9 @@ public class MainController implements Serializable {
         }
     }
 
+    /**
+     * Saves the current game state
+     */
     public void saveGame() {
         try {
             FileOutputStream saveFile = new FileOutputStream("SaveObj.sav");
@@ -442,6 +572,9 @@ public class MainController implements Serializable {
 
     }
 
+    /**
+     * Loads the last saved game state
+     */
     public void loadGame(){
         try {
             FileInputStream saveFile = new FileInputStream("SaveObj.sav");

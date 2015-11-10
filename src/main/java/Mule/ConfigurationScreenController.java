@@ -179,6 +179,10 @@ public class ConfigurationScreenController {
         mc.loadGame();
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

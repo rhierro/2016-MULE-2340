@@ -27,6 +27,11 @@ public class MuleGame extends Application {
     //Constructor
     }
 
+    /**
+     * Starts the game
+     * @param stage stage to display the game in
+     * @throws Exception
+     */
     public void start(Stage stage) throws Exception {
         mc = new MainController();
         mc.setStage(stage);

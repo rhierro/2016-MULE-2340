@@ -40,6 +40,10 @@ public class MainMapController {
     private Text time;
     private TextFlow timeFlow;
 
+    /**
+     * Generates the buttons upon initialization
+     * @throws Exception
+     */
     public void generateButtons() throws Exception {
         //basically the initiate method
         int currentPlayerNum = mc.getCurrentPlayerNumber();
@@ -135,11 +139,15 @@ public class MainMapController {
 
     }
 
+    /**
+     * Updates the time displayed in the label
+     */
     public void updateTime() {
         time.setText(String.format("%d", mc.getRoundTime()));
 
     }
 
+    @FXML
     private void townButtonPressed(ActionEvent event) {
         try {
             mc.switchtoTownMapScreen();
@@ -149,6 +157,7 @@ public class MainMapController {
         
     }
 
+    @FXML
     private void buttonPressed(ActionEvent event) {
         if (currentPlayer.hasMule()) {
             Button b = (Button) event.getSource();
@@ -175,6 +184,7 @@ public class MainMapController {
         }
     }
 
+    @FXML
     private void addTypeIcon(Button b) {
         double buttonX = b.getLayoutX();
         double buttonY = b.getLayoutY();
@@ -203,17 +213,19 @@ public class MainMapController {
 
     }
 
-    public void cancelTimer() {
-        timer.cancel();
-    }
 
-    public static String toRGBCode(Color color) {
+
+    private static String toRGBCode(Color color) {
         return String.format("#%02X%02X%02X",
                 (int) (color.getRed() * 255),
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

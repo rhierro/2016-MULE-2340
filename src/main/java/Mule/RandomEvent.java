@@ -11,6 +11,9 @@ public class RandomEvent {
 
     public MainController mc;
 
+    /**
+     * Spawns a Random event
+     */
     public void doRandomEvent() {
         Player currentPlayer = mc.getCurrentPlayer();
         Random rand = new Random();
@@ -73,6 +76,10 @@ public class RandomEvent {
 
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

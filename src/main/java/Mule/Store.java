@@ -31,19 +31,43 @@ public class Store implements Serializable{
     private int energyPrice;
     private int foodPrice;
 
+    /**
+     * Gets the price of a mule
+     * @return price
+     */
     public int getMulePrice() {
         return MulePrice;
     }
+
+    /**
+     * Gets the price of a Smithore Mule attachment
+     * @return price
+     */
     public int getSmithoreMulePrice() {
         return smithoreMulePrice;
     }
+
+    /**
+     * Returns the price of a Energy Mule attachment
+     * @return price
+     */
     public int getEnergyMulePrice() {
         return energyMulePrice;
     }
+
+    /**
+     * Returns the price of a Food Mule attachment
+     * @return price
+     */
     public int getFoodMulePrice() {
         return foodMulePrice;
     }
 
+    /**
+     * Returns the price of a specified item
+     * @param item item
+     * @return price
+     */
     public int getPrice(Store.Item item) {
         if (item == Item.Smithore) {
             return smithorePrice;
@@ -55,6 +79,10 @@ public class Store implements Serializable{
             return 0;
         }
     }
+
+    /**
+     * Generates the prices of the store's items
+     */
     public void generatePrices() {
         MulePrice = 69;
         smithoreMulePrice = 69;
@@ -71,6 +99,11 @@ public class Store implements Serializable{
         inventory.add(Item.Food);
     }
 
+    /**
+     * Gets the amouunt of an Item that the store has
+     * @param item item
+     * @return amount
+     */
     public int getInventoryAmount(Store.Item item) {
         if (inventory.contains(item)) {
             return inventoryAmount.get(item);
@@ -79,10 +112,19 @@ public class Store implements Serializable{
         }
     }
 
+    /**
+     * Gets the inventory of the store
+     * @return inventory
+     */
     public List<Store.Item> getInventory() {
         return inventory;
     }
 
+    /**
+     * Adjusts the inventory of the store by a specified amount
+     * @param item item
+     * @param adjustment amount to add (can be negative)
+     */
     public void changeInventory(Item item, int adjustment) {
         int amount = inventoryAmount.get(item);
         inventoryAmount.put(item, amount + adjustment);

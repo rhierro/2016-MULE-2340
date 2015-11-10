@@ -34,12 +34,15 @@ public class LandBuyingMapController {
     @FXML
     private Label test_label;
 
-    @FXML
-    private void initialize() {
-    }
+
+
 
     private Text info;
 
+    /**
+     * Initializes the Map UI
+     * @throws Exception
+     */
     @FXML
     public void generateButtons() throws Exception {
         currentRound = mc.getCurrentRound();
@@ -142,8 +145,8 @@ public class LandBuyingMapController {
         map_pane.getChildren().add(infoFlow);
     }
 
-    public void passButtonPressed(ActionEvent event) {
-
+    @FXML
+    private void passButtonPressed(ActionEvent event) {
         try {
             if (currentPlayerNum == 3) {
                 mc.startTurn();
@@ -154,13 +157,13 @@ public class LandBuyingMapController {
                         + currentPlayer.getName() + "-- $"
                         + currentPlayer.getMoney());
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void buttonPressed(ActionEvent event) {
+    @FXML
+    private void buttonPressed(ActionEvent event) {
         try {
             if (currentPlayerNum < 4) {
                 Button sourceButton = (Button) event.getSource();
@@ -208,7 +211,8 @@ public class LandBuyingMapController {
         }
     }
 
-    public void buttonEntered(MouseEvent event) {
+    @FXML
+    private void buttonEntered(MouseEvent event) {
         Button b = (Button) event.getSource();
         double buttonX = b.getLayoutX();
         double buttonY = b.getLayoutY();
@@ -230,7 +234,8 @@ public class LandBuyingMapController {
         }
     }
 
-    public void buttonExited(MouseEvent event) {
+    @FXML
+    private void buttonExited(MouseEvent event) {
         Button b = (Button) event.getSource();
         double buttonX = b.getLayoutX();
         double buttonY = b.getLayoutY();
@@ -242,13 +247,18 @@ public class LandBuyingMapController {
         b.setText("");
     }
 
-    public static String toRGBCode(Color color) {
+    private static String toRGBCode(Color color) {
         return String.format("#%02X%02X%02X",
                 (int) (color.getRed() * 255),
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
 
+
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

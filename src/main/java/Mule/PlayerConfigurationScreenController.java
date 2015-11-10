@@ -73,9 +73,7 @@ public class PlayerConfigurationScreenController {
 
     }
 
-    public PlayerConfigurationScreenController() {
 
-    }
 
 
     @FXML
@@ -122,6 +120,10 @@ public class PlayerConfigurationScreenController {
         error_label.setText("");
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

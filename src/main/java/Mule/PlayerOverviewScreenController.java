@@ -35,8 +35,9 @@ public class PlayerOverviewScreenController {
     private VBox player4_vbox;
 
 
-
-
+    /**
+     * Initializes the UI
+     */
     @FXML
     public void initialize() {
         vboxes.add(player1_vbox);
@@ -70,13 +71,17 @@ public class PlayerOverviewScreenController {
         mc.initiateRound();
     }
 
-    public static String toRGBCode(Color color) {
+    private static String toRGBCode(Color color) {
         return String.format("#%02X%02X%02X",
                 (int) (color.getRed() * 255),
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
     }
 
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
     }

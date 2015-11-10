@@ -149,9 +149,17 @@ public class TownMapController {
         mc.saveGame();
     }
 
+    /**
+     * Updates the time label in the town map
+     */
     public void updateTime() {
         time.setText(String.format("%d", mc.getRoundTime()));
     }
+
+    /**
+     * Sets the reference back to the main controller
+     * @param mc maincontroller object
+     */
     public void setMainController(MainController mc) {
         this.mc = mc;
         currentPlayer = mc.getCurrentPlayer();
