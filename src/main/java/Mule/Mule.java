@@ -4,8 +4,13 @@ import java.io.Serializable;
 
 /**
  * Created by Henry on 9/30/2015.
+ * The Mule class
  */
 public class Mule implements Serializable {
+    
+    /**
+     * The types of Mules
+     */
     public enum MuleType {
         NONE,
         FOOD,
