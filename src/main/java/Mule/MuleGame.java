@@ -21,7 +21,6 @@ public class MuleGame extends Application {
 
     private ObservableList<Player> players = FXCollections.
             observableArrayList();
-    private MainController mc;
 
     public MuleGame() {
     //Constructor
@@ -33,7 +32,7 @@ public class MuleGame extends Application {
      * @throws Exception
      */
     public void start(Stage stage) throws Exception {
-        mc = new MainController();
+        MainController mc = new MainController();
         mc.setStage(stage);
         mc.startGame();
 

@@ -1,6 +1,5 @@
 package Mule;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,26 +28,22 @@ public class MainMapController {
     private int currentPlayerNum;
     private Player currentPlayer;
     private Timer timer;
-    private ArrayList<Button> buttonList = new ArrayList<>();
+    private final ArrayList<Button> buttonList = new ArrayList<>();
 
 
     @FXML
     private Pane map_pane;
 
-    private Text info;
-    private TextFlow infoFlow;
     private Text time;
-    private TextFlow timeFlow;
 
     /**
      * Generates the buttons upon initialization
      * @throws Exception
      */
-    public void generateButtons() throws Exception {
+    public void generateButtons() {
         //basically the initiate method
         int currentPlayerNum = mc.getCurrentPlayerNumber();
         currentPlayer = mc.getCurrentPlayer();
-        PriorityQueue<Player> playerArray = mc.getPlayers();
         landList = mc.getMap();
         int mapNum = mc.getMapNum();
         if (mapNum == 0) {
@@ -73,8 +68,6 @@ public class MainMapController {
                 landButton.setPrefWidth(120.0);
                 landButton.setLayoutX(1 + (j * (120)));
                 landButton.setLayoutY(1 + (i * (144)));
-                int tempX = (int) landButton.getLayoutX();
-                int tempY = (int) landButton.getLayoutY();
                 landButton.setStyle("-fx-background-color: transparent");
                 if (landList.get(i)[j].getOwner() != null) {
                     int red = (int) (landList.get(i)[j].getOwner().
@@ -120,17 +113,17 @@ public class MainMapController {
             addTypeIcon(b);
         }
         Color color = currentPlayer.getColor();
-        info = new Text("");
+        Text info = new Text("");
         info.setText("Player " + (currentPlayerNum + 1) + "--"
-                + currentPlayer.getName()  + "-- $"
+                + currentPlayer.getName() + "-- $"
                 + (currentPlayer.getMoney()));
-        infoFlow = new TextFlow(info);
+        TextFlow infoFlow = new TextFlow(info);
         infoFlow.setLayoutX(8);
         infoFlow.setLayoutY(689);
         infoFlow.setStyle("-fx-background-color:" + toRGBCode(color));
         map_pane.getChildren().add(infoFlow);
         time = new Text("10");
-        timeFlow = new TextFlow(time);
+        TextFlow timeFlow = new TextFlow(time);
         timeFlow.setLayoutX(500);
         timeFlow.setLayoutY(689);
         timeFlow.setStyle("-fx-background-color: lightgray");
@@ -170,15 +163,14 @@ public class MainMapController {
                 if (!land.hasMule()) {
                     land.setProductionType(currentPlayer.getMule().getType());
                     addTypeIcon(b);
-                    land.setHasMule(true);
+                    land.setHasMule();
                 }
             } else {
                 currentPlayer.removeMule();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Mule");
                 alert.setHeaderText("Mule Ran Away");
-                alert.setContentText(String.
-                        format("Your Mule has run away! Sucks to suck."));
+                alert.setContentText("Your Mule has run away! Sucks to suck.");
                 alert.showAndWait();
             }
         }

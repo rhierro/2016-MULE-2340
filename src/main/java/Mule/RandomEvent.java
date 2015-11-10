@@ -24,24 +24,21 @@ public class RandomEvent {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Bad Luck");
-                alert.setContentText(String.
-                        format("You were robbed of $690!"));
+                alert.setContentText("You were robbed of $690!");
                 alert.showAndWait();
             } else if (nextInt == 2) { // lose energy
                 currentPlayer.changeInventory(Store.Item.Energy, -3);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Bad Luck");
-                alert.setContentText(String.
-                        format("Your MULES are sick! You lose 3 Energy."));
+                alert.setContentText("Your MULES are sick! You lose 3 Energy.");
                 alert.showAndWait();
             } else if (nextInt == 3) { // lose food
                 currentPlayer.changeInventory(Store.Item.Food, -3);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Bad Luck");
-                alert.setContentText(String.
-                        format("Wolves ate 3 of your food."));
+                alert.setContentText("Wolves ate 3 of your food.");
                 alert.showAndWait();
 
             }
@@ -51,24 +48,21 @@ public class RandomEvent {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Good Luck");
-                alert.setContentText(String.
-                        format("$690 dropped from the sky!"));
+                alert.setContentText("$690 dropped from the sky!");
                 alert.showAndWait();
             } else if (nextInt == 2) { // gain energy
                 currentPlayer.changeInventory(Store.Item.Energy, 3);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Good Luck");
-                alert.setContentText(String.
-                        format("Your MULES drank coffee! You gain 3 energy."));
+                alert.setContentText("Your MULES drank coffee! You gain 3 energy.");
                 alert.showAndWait();
             } else if (nextInt == 3) { // gain  food
                 currentPlayer.changeInventory(Store.Item.Food, 3);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Random Event");
                 alert.setHeaderText("Good Luck");
-                alert.setContentText(String.
-                        format("Someone gives you an extra 3 foods."));
+                alert.setContentText("Someone gives you an extra 3 foods.");
                 alert.showAndWait();
 
             }

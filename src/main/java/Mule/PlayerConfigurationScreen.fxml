@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@resources/ConfigurationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Mule.PlayerConfigurationScreenController">
-   <children>
-      <TextField fx:id="name_textfield" layoutX="180.0" layoutY="66.0" onKeyTyped="#inputboxEntered" promptText="Input Name" />
-      <Label layoutX="106.0" layoutY="69.0" text="Name:" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="109.0" layoutY="130.0" text="Race:" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <ComboBox fx:id="race_combobox" layoutX="179.0" layoutY="127.0" prefWidth="150.0" />
-      <Label layoutX="105.0" layoutY="188.0" text="Color:" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Label>
-      <ColorPicker fx:id="color_colorpicker" layoutX="180.0" layoutY="185.0" />
-      <Button fx:id="continue_button" layoutX="179.0" layoutY="325.0" mnemonicParsing="false" onAction="#continuePressed" prefHeight="39.0" prefWidth="107.0" styleClass="continue-button" stylesheets="@resources/ConfigurationStyle.css" text="Continue" textFill="TRANSPARENT" />
-      <Label fx:id="error_label" layoutX="352.0" layoutY="70.0" prefHeight="17.0" prefWidth="217.0" textFill="RED" />
-      <Label fx:id="playerNum_label" layoutX="196.0" layoutY="13.0" text="Player 1" textFill="WHITE">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-   </children>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" styleClass="background" stylesheets="@resources/ConfigurationStyle.css"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Mule.PlayerConfigurationScreenController">
+   <TextField fx:id="name_textfield" layoutX="180.0" layoutY="66.0" onKeyTyped="#inputboxEntered"
+              promptText="Input Name"/>
+   <Label layoutX="106.0" layoutY="69.0" text="Name:" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="13.0"/>
+      </font>
+   </Label>
+   <Label layoutX="109.0" layoutY="130.0" text="Race:" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="13.0"/>
+      </font>
+   </Label>
+   <ComboBox fx:id="race_combobox" layoutX="179.0" layoutY="127.0" prefWidth="150.0"/>
+   <Label layoutX="105.0" layoutY="188.0" text="Color:" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0"/>
+      </font>
+   </Label>
+   <ColorPicker fx:id="color_colorpicker" layoutX="180.0" layoutY="185.0"/>
+   <Button fx:id="continue_button" layoutX="179.0" layoutY="325.0" mnemonicParsing="false" onAction="#continuePressed"
+           prefHeight="39.0" prefWidth="107.0" styleClass="continue-button"
+           stylesheets="@resources/ConfigurationStyle.css" text="Continue" textFill="TRANSPARENT"/>
+   <Label fx:id="error_label" layoutX="352.0" layoutY="70.0" prefHeight="17.0" prefWidth="217.0" textFill="RED"/>
+   <Label fx:id="playerNum_label" layoutX="196.0" layoutY="13.0" text="Player 1" textFill="WHITE">
+      <font>
+         <Font size="27.0"/>
+      </font>
+   </Label>
 </Pane>

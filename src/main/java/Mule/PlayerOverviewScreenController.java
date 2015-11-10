@@ -20,10 +20,9 @@ import java.util.ArrayList;
 
 public class PlayerOverviewScreenController {
     private MainController mc;
-    private ArrayList<Player> players;
 
     @FXML
-    private ObservableList<VBox> vboxes = FXCollections.observableArrayList();
+    private final ObservableList<VBox> vboxes = FXCollections.observableArrayList();
 
     @FXML
     private VBox player1_vbox;
@@ -47,13 +46,14 @@ public class PlayerOverviewScreenController {
     }
 
     public void generateOverview() {
-        players = new ArrayList<Player>(mc.getPlayers());
+        ArrayList<Player> players = new ArrayList<>(mc.getPlayers());
         for (int i = 0; i < vboxes.size(); i++) {
             Label player = new Label(String.format("Player %d", i + 1));
             vboxes.get(i).getChildren().add(player);
             Label name = new Label("Name: " + players.get(i).getName());
             vboxes.get(i).getChildren().add(name);
             Label race = new Label("Race: " + players.get(i).getRace());
+            vboxes.get(i).getChildren().add(race);
             String color = toRGBCode(players.get(i).getColor());
             int red = (int) (players.get(i).getColor().getRed() * 255);
             int  green = (int) (players.get(i).getColor().getGreen() * 255);

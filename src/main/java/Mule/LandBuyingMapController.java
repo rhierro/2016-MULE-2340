@@ -1,6 +1,5 @@
 package Mule;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -44,9 +43,9 @@ public class LandBuyingMapController {
      * @throws Exception
      */
     @FXML
-    public void generateButtons() throws Exception {
+    public void generateButtons() {
         currentRound = mc.getCurrentRound();
-        playerArray = new PriorityQueue<Player>(mc.getPlayers());
+        playerArray = new PriorityQueue<>(mc.getPlayers());
         landList = mc.getMap();
         currentPlayer = playerArray.poll();
         int mapNum = mc.getMapNum();
@@ -72,8 +71,6 @@ public class LandBuyingMapController {
                 landButton.setPrefWidth(120.0);
                 landButton.setLayoutX(1 + (j * (120)));
                 landButton.setLayoutY(1 + (i * (144)));
-                int tempX = (int) landButton.getLayoutX();
-                int tempY = (int) landButton.getLayoutY();
                 landButton.setStyle("-fx-background-color: transparent");
                 if (landList.get(i)[j].getOwner() != null) {
                     int red = (int) (landList.get(i)[j].getOwner().getColor().

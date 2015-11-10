@@ -21,7 +21,7 @@ public class PlayerTest {
     private Player pEF;
     private Player pSF;
 
-    public static final int TIMEOUT = 200;
+    private static final int TIMEOUT = 200;
 
     @Before
     public void setUp() {

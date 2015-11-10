@@ -34,26 +34,26 @@ public class MainController implements Serializable {
     private int roundTime = ROUNDTIME; // in seconds
     private RandomEvent randomEvent;
 
-    FXMLLoader configLoader;
-    FXMLLoader playerConfigLoader;
-    FXMLLoader playerOverviewLoader;
-    FXMLLoader landBuyingMapLoader;
-    FXMLLoader mainMapLoader;
-    FXMLLoader townMapLoader;
-    FXMLLoader storeLoader;
-    FXMLLoader playerSummaryLoader;
-    MainMapController mainMapController;
-    TownMapController townMapController;
-    StoreController storeController;
-    Scene mainMapScene;
-    Scene townMapScene;
-    Scene storeScene;
+    private FXMLLoader configLoader;
+    private FXMLLoader playerConfigLoader;
+    private FXMLLoader playerOverviewLoader;
+    private FXMLLoader landBuyingMapLoader;
+    private FXMLLoader mainMapLoader;
+    private FXMLLoader townMapLoader;
+    private FXMLLoader storeLoader;
+    private FXMLLoader playerSummaryLoader;
+    private MainMapController mainMapController;
+    private TownMapController townMapController;
+    private StoreController storeController;
+    private Scene mainMapScene;
+    private Scene townMapScene;
+    private Scene storeScene;
 
 
 
     public MainController() {
         try {
-            players = new PriorityQueue<Player>(4, new Comparator<Player>() {
+            players = new PriorityQueue<>(4, new Comparator<Player>() {
                 public int compare(Player p1, Player p2) {
                     if (p1.getScore() > p2.getScore()) {
                         return 1;
@@ -64,18 +64,18 @@ public class MainController implements Serializable {
                     }
                 }
             });
-            tempPlayers = new PriorityQueue<Player>(4,
+            tempPlayers = new PriorityQueue<>(4,
                     new Comparator<Player>() {
-                    public int compare(Player p1, Player p2) {
-                        if (p1.getScore() > p2.getScore()) {
-                            return 1;
-                        } else if (p1.getScore() < p2.getScore()) {
-                            return -1;
-                        } else {
-                            return 0;
+                        public int compare(Player p1, Player p2) {
+                            if (p1.getScore() > p2.getScore()) {
+                                return 1;
+                            } else if (p1.getScore() < p2.getScore()) {
+                                return -1;
+                            } else {
+                                return 0;
+                            }
                         }
-                    }
-                });
+                    });
 
             configLoader = new FXMLLoader(getClass().
                     getResource("ConfigurationScreen.fxml"));
@@ -268,7 +268,7 @@ public class MainController implements Serializable {
      * @throws Exception
      */
     public void loadPlayerConfigurationScreen() throws Exception {
-        Scene sceneConfig = new Scene((Parent) playerConfigLoader.load());
+        Scene sceneConfig = new Scene(playerConfigLoader.load());
         stage.setScene(sceneConfig);
         stage.show();
         PlayerConfigurationScreenController controller = playerConfigLoader.
@@ -479,7 +479,7 @@ public class MainController implements Serializable {
             calculateProduction();
             currentRound++;
 
-            players = new PriorityQueue<Player>(tempPlayers);
+            players = new PriorityQueue<>(tempPlayers);
             tempPlayers.clear();
             currentPlayerNum = 0;
             landBuyingMapLoader = new FXMLLoader(getClass().

@@ -1,7 +1,5 @@
 package Mule;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 //import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
@@ -15,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 //import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ConfigurationScreenController {
@@ -124,15 +123,13 @@ public class ConfigurationScreenController {
         mc.setNumberOfPlayers(players);
         mc.setMap(setupMap(map));
         mc.setMapNum(map);
-        Stage stageN = (Stage) ((Node) event.getSource()).getScene()
-                .getWindow();
         mc.loadPlayerConfigurationScreen();
     }
 
     private List<Land[]> setupMap (int map ) {
         Land[][] landArray = new Land[5][9];
-        List<int[]> mountainArray = new ArrayList<int[]>();
-        List<int[]> waterArray = new ArrayList<int[]>();
+        List<int[]> mountainArray = new ArrayList<>();
+        List<int[]> waterArray = new ArrayList<>();
         for (int i = 0; i < landArray.length; i++) {
             for (int j = 0; j < landArray[0].length; j++) {
                 landArray[i][j] = new Land();
@@ -145,12 +142,8 @@ public class ConfigurationScreenController {
             int[][] mountains = {{0, 3}, {0, 4}, {0, 6}, {0, 7}, {1, 0},
                 {1, 1}, {1, 2}, {1, 5}, {2, 7}, {2, 8}, {3, 1}, {3, 2},
                 {3, 3}, {3, 7}, {3, 8}, {4, 0}, {4, 1}, {4, 2}, {4, 8}};
-            for (int[] mtn : mountains) {
-                mountainArray.add(mtn);
-            }
-            for (int[] wtr : waters) {
-                waterArray.add(wtr);
-            }
+            Collections.addAll(mountainArray, mountains);
+            Collections.addAll(waterArray, waters);
         }
         if ((waterArray.size() != 0) && (mountainArray.size() != 0)) {
             for (int[] mountain : mountainArray) {
@@ -164,9 +157,7 @@ public class ConfigurationScreenController {
         }
 
         ArrayList<Land[]> list = new ArrayList<>();
-        for (int i = 0; i < landArray.length; i++) {
-            list.add(landArray[i]);
-        }
+        Collections.addAll(list, landArray);
         return list;
 
 

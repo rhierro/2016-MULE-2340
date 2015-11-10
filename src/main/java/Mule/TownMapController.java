@@ -27,12 +27,12 @@ public class TownMapController {
     private Player currentPlayer;
 
     @FXML
-    private void returntoMapPressed(ActionEvent event) throws Exception {
+    private void returntoMapPressed(ActionEvent event) {
         mc.switchtoMainMapScreen();
     }
 
     @FXML
-    private void pubPressed(ActionEvent event) throws Exception {
+    private void pubPressed(ActionEvent event) {
         Random rand = new Random();
         int winnings = rand.nextInt(6969);
         currentPlayer.adjustMoney(winnings);
@@ -56,9 +56,8 @@ public class TownMapController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mule Store");
                 alert.setHeaderText("Mule Purchased");
-                alert.setContentText(String.
-                        format("You purchased a Mule! "
-                                + "Outfit it at a store."));
+                alert.setContentText("You purchased a Mule! "
+                        + "Outfit it at a store.");
                 alert.showAndWait();
             }
         }
@@ -73,17 +72,15 @@ public class TownMapController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mule Store");
                 alert.setHeaderText("Mule Outfitted");
-                alert.setContentText(String.
-                        format("You have outfitted your "
-                                + "Mule to produce Smithore!"));
+                alert.setContentText("You have outfitted your "
+                        + "Mule to produce Smithore!");
                 alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.
-                    format("Purchase a Mule to outfit it!"));
+            alert.setContentText("Purchase a Mule to outfit it!");
             alert.showAndWait();
         }
     }
@@ -96,17 +93,15 @@ public class TownMapController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mule Store");
                 alert.setHeaderText("Mule Outfitted");
-                alert.setContentText(String.
-                        format("You have outfitted your Mule "
-                                + "to produce Food!"));
+                alert.setContentText("You have outfitted your Mule "
+                        + "to produce Food!");
                 alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.
-                    format("Purchase a Mule to outfit it!"));
+            alert.setContentText("Purchase a Mule to outfit it!");
             alert.showAndWait();
         }
     }
@@ -119,17 +114,15 @@ public class TownMapController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Mule Store");
                 alert.setHeaderText("Mule Outfitted");
-                alert.setContentText(String.
-                        format("You have outfitted your"
-                                + "Mule to produce Energy!"));
+                alert.setContentText("You have outfitted your"
+                        + "Mule to produce Energy!");
                 alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Mule Store");
             alert.setHeaderText("No Mule");
-            alert.setContentText(String.
-                    format("Purchase a Mule to outfit it!"));
+            alert.setContentText("Purchase a Mule to outfit it!");
             alert.showAndWait();
         }
     }

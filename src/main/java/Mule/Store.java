@@ -1,9 +1,5 @@
 package Mule;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

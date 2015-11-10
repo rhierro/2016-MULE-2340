@@ -30,11 +30,8 @@ public class PlayerConfigurationScreenController {
 
     private int playersAdded = 0;
     private MuleGame mainApp;
-    private String name;
-    private Color color = Color.WHITE;
-    private String race;
     private int players;
-    private ObservableList<String> races =
+    private final ObservableList<String> races =
             FXCollections.observableArrayList(
                     "Packer",
                     "Spheroid",
@@ -81,9 +78,9 @@ public class PlayerConfigurationScreenController {
         if (name_textfield.getText().trim().equals("")) {
             error_label.setText("Please enter a name");
         } else {
-            name = name_textfield.getText();
-            race = race_combobox.getValue();
-            color = color_colorpicker.getValue();
+            String name = name_textfield.getText();
+            String race = race_combobox.getValue();
+            Color color = color_colorpicker.getValue();
             Player p = new Player(name, race, color);
             mc.addPlayer(p);
             name_textfield.setText("");
@@ -105,8 +102,6 @@ public class PlayerConfigurationScreenController {
                 }
             }
 
-            Stage stageN = (Stage) ((Node) event.getSource()).getScene()
-                    .getWindow();
             mc.loadPlayerOverviewScreen();
 
         } else {

@@ -26,8 +26,8 @@ public class Land implements Serializable {
         return hasMule;
     }
 
-    public void setHasMule(boolean bool) {
-        hasMule = bool;
+    public void setHasMule() {
+        hasMule = true;
     }
 
     public void setType(LandType type) {

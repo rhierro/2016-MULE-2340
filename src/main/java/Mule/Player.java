@@ -5,10 +5,7 @@ import javafx.collections.ObservableMap;
 import javafx.scene.paint.Color;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Henry on 9/9/2015.
@@ -55,7 +52,7 @@ public class Player implements Serializable {
 
     /**
      * Sets the race of the player
-     * @param race
+     * @param race race
      */
     public void setRace(String race) {
         this.race = race;
@@ -87,7 +84,7 @@ public class Player implements Serializable {
 
     /**
      * Sets the color of the player
-     * @param color
+     * @param color color
      */
     public void setColor(Color color) {
         this.r  = color.getRed();

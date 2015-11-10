@@ -15,9 +15,9 @@ import javafx.util.Callback;
  */
 public class StoreController {
 
-    MainController mc;
-    Player currentPlayer;
-    Store currentStore;
+    private MainController mc;
+    private Player currentPlayer;
+    private Store currentStore;
 
     @FXML
     private ListView<Store.Item> player_listView;
@@ -55,7 +55,7 @@ public class StoreController {
                 ListCell<Store.Item>>() {
             @Override
             public ListCell<Store.Item> call(ListView<Store.Item> param) {
-                ListCell<Store.Item> cell = new ListCell<Store.Item>() {
+                return new ListCell<Store.Item>() {
                     @Override
                     protected void updateItem(Store.Item item,
                                               boolean empty) {
@@ -73,7 +73,6 @@ public class StoreController {
                         }
                     }
                 };
-                return cell;
             }
         });
 
@@ -85,7 +84,7 @@ public class StoreController {
                         ListCell<Store.Item>>() {
                     @Override
             public ListCell<Store.Item> call(ListView<Store.Item> param) {
-                        ListCell<Store.Item> cell = new ListCell<Store.Item>() {
+                        return new ListCell<Store.Item>() {
                             @Override
                     protected void updateItem(Store.Item item,
                                 boolean empty) {
@@ -104,7 +103,6 @@ public class StoreController {
                                 }
                             }
                         };
-                        return cell;
                     }
                 });
 
