@@ -19,6 +19,7 @@ import java.util.Timer;
 
 /**
  * Created by Henry on 9/22/2015.
+ * The main map controller class
  */
 public class MainMapController {
 
