@@ -12,6 +12,7 @@ import javafx.util.Callback;
 
 /**
  * Created by Henry on 10/5/2015.
+ * The Store Controller class
  */
 public class StoreController {
 
