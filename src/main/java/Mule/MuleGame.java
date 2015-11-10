@@ -1,27 +1,22 @@
-/**
- * Created by Henry on 9/8/2015.
- */
 package Mule;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Scene;
-//import javafx.scene.layout.AnchorPane;
-//import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//import javafx.scene.Parent;
-//import javafx.event.EventHandler;
-//import javafx.scene.input.KeyEvent;
-//import javafx.scene.input.KeyCode;
 
-
+/**
+ * Created by Henry on 9/8/2015.
+ * The Mule Game class
+ */
 public class MuleGame extends Application {
 
     private ObservableList<Player> players = FXCollections.
             observableArrayList();
 
+    /**
+     * The constructor of the Mule Game
+     */
     public MuleGame() {
     //Constructor
     }
