@@ -8,8 +8,12 @@ import java.util.Map;
 
 /**
  * Created by Henry on 9/30/2015.
+ * The Store class
  */
-public class Store implements Serializable{
+public class Store implements Serializable {
+    /**
+     * The types of items the store has
+     */
     public enum Item {
         Smithore,
         Energy,
