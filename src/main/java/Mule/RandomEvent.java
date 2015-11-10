@@ -6,9 +6,10 @@ import java.util.Random;
 
 /**
  * Created by Henry on 10/21/2015.
+ * The Random Event class
  */
 public class RandomEvent {
-
+    
     public MainController mc;
 
     /**
