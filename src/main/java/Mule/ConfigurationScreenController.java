@@ -1,21 +1,19 @@
 package Mule;
 
 import javafx.event.ActionEvent;
-//import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-//import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-//import javafx.scene.Parent;
-//import sun.applet.Main;
 
 import java.util.ArrayList;
-//import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The class for the configuration screen controller
+ */
 public class ConfigurationScreenController {
 
     @FXML
@@ -159,9 +157,6 @@ public class ConfigurationScreenController {
         ArrayList<Land[]> list = new ArrayList<>();
         Collections.addAll(list, landArray);
         return list;
-
-
-
 
     }
 
