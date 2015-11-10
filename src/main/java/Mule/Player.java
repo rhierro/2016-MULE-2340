@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Henry on 9/9/2015.
+ * The player class
  */
 public class Player implements Serializable {
     private String race;
@@ -23,20 +24,23 @@ public class Player implements Serializable {
 
     private boolean computer = false;
 
-
+    /**
+     * The player constructor
+     */
     public Player(String n, String r, Color c) {
         race = r;
         name = n;
         this.r =  (c.getRed() );
         this.g =  (c.getGreen());
         this.b =  (c.getBlue() );
-
-
         money = 696969;
         inventory.add(Store.Item.Energy);
         inventoryAmount.put(Store.Item.Energy, 6);
     }
 
+    /**
+     * The default (computer) player constructor
+     */
     public Player(String n, String r, Color c, boolean comp) {
         this(n, r, c);
         computer = comp;
