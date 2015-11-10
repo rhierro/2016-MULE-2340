@@ -10,7 +10,7 @@ import java.util.Random;
  */
 public class RandomEvent {
     
-    public MainController mc;
+    private MainController mc;
 
     /**
      * Spawns a Random event
