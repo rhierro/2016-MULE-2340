@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * Created by Henry on 9/22/2015.
+ * The Town Map Controller class
  */
 public class TownMapController {
 
