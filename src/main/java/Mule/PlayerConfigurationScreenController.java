@@ -1,15 +1,9 @@
-/**
- * Created by Henry on 9/9/2015.
- */
 package Mule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -18,15 +12,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-//import java.awt.*;
-//import java.util.*;
 import java.util.Random;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Created by Henry on 9/9/2015.
+ * The Player Configuration Screen Controller class
+ */
 public class PlayerConfigurationScreenController {
-
-
 
     private int playersAdded = 0;
     private MuleGame mainApp;
