@@ -1,23 +1,19 @@
-/**
- * Created by Henry on 9/14/2015.
- */
 package Mule;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-//import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Henry on 9/14/2015.
+ * The Player Overview Screen Controller
+ */
 public class PlayerOverviewScreenController {
     private MainController mc;
 
@@ -45,6 +41,9 @@ public class PlayerOverviewScreenController {
         vboxes.add(player4_vbox);
     }
 
+    /**
+     * Generates the overview of players
+     */
     public void generateOverview() {
         ArrayList<Player> players = new ArrayList<>(mc.getPlayers());
         for (int i = 0; i < vboxes.size(); i++) {
