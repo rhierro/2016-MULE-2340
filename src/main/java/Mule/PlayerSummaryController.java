@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Henry on 10/14/2015.
+ * The Player Summary Controller class
  */
 public class PlayerSummaryController {
 
