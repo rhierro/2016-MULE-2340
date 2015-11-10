@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
 
 /**
  * Created by Henry on 9/18/2015.
+ * The land buying map controller class
  */
 public class LandBuyingMapController {
 
